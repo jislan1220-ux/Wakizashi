@@ -33,7 +33,7 @@ Fale em português, de forma curta. A pessoa aprova vendo, então mostre arquivo
 
 Peça também uma pasta com os SFX em `.wav`, que ela escolhe. Os nomes em `sfx.json` são os nomes desses arquivos, sem a extensão, e a pasta entra em `--biblioteca`.
 
-Se faltar programa, SFX ou música, siga [references/dependencias.md](references/dependencias.md): mostre de onde baixar e peça aprovação antes de cada item.
+Se faltar programa, SFX ou música, siga [references/dependencias.md](references/dependencias.md): junte o que falta em uma lista só e peça um único "sim".
 
 ## Etapas
 
@@ -53,7 +53,7 @@ Gera `analise/palavras.json` (tempo de cada palavra), pausas, batidas e `anim/pe
 
 ### 3. Prancha (aprovação)
 
-Divida a narração em cenas pelas frases. Com a skill Fluxo de edição instalada, leia `guias/oficio-motion.md` e `guias/etapa-motion-mapa.md` dela para planejar o movimento. Para cada frase, defina o objeto de interface que conta a história, a entrada, a direção da câmera e os SFX. Copie `assets/wakizashi_referencia.html` para `anim/anim.html` e troque a lista `SC`, mantendo o motor. Crie um objeto de interface ligado ao tema em cada cena. Troque também a logo, o crédito, o `<title>` e as palavras de `FL`, e confira no fim se não sobrou nada do Wakizashi. Ignore as partes do guia sobre HyperFrames: aqui o motor é a página HTML. Ajuste `DUR`, `HITS` (batidas fortes), `FOC` (onde a luz fica em cada cena) e `BL` (hora e posição do corte da logo).
+Divida a narração em cenas pelas frases. Com a skill Fluxo de edição instalada, leia `~/.claude/skills/fluxo-de-edicao/guias/oficio-motion.md` e `~/.claude/skills/fluxo-de-edicao/guias/etapa-motion-mapa.md` para planejar o movimento. Para cada frase, defina o objeto de interface que conta a história, a entrada, a direção da câmera e os SFX. Copie `assets/wakizashi_referencia.html` para `anim/anim.html` e troque a lista `SC`, mantendo o motor. Crie um objeto de interface ligado ao tema em cada cena. Troque também a logo, o crédito, o `<title>` e as palavras de `FL`, e confira no fim se não sobrou nada do Wakizashi. Ignore as partes do guia sobre HyperFrames: aqui o motor é a página HTML. Ajuste `DUR`, `HITS` (batidas fortes), `FOC` (onde a luz fica em cada cena) e `BL` (hora e posição do corte da logo).
 
 Mostre uma imagem por cena:
 
@@ -66,7 +66,7 @@ Junto, passe a tabela: tempo, fala, imagem e SFX. Só siga com a aprovação da 
 
 ### 4. Áudio (aprovação)
 
-Com a skill Fluxo de edição instalada, leia `guias/etapa-sfx.md` dela para escolher onde cada som entra. Monte `sfx.json` com os eventos (formato em `scripts/mixar.py`) e rode:
+Com a skill Fluxo de edição instalada, leia `~/.claude/skills/fluxo-de-edicao/guias/etapa-sfx.md` para escolher onde cada som entra. Monte `sfx.json` com os eventos (formato em `scripts/mixar.py`) e rode:
 
 ```bash
 $PY scripts/mixar.py narracao.mp3 musica.mp3 INICIO_MUSICA DUR sfx.json entrega_v01 --biblioteca PASTA_DOS_SFX

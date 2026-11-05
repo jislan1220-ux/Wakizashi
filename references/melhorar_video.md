@@ -40,4 +40,4 @@ Se a referência entrar em conflito com essa base, avise e pergunte qual seguir.
 
 Aprenda a técnica, sem copiar o trabalho de ninguém: não reproduza logo, personagem, arte, texto ou cena de outro criador. Não use trechos, imagens ou áudio dos vídeos de referência no vídeo final, a não ser que sejam da própria pessoa.
 
-Com a skill Fluxo de edição instalada, leia `guias/referencias.md` dela para medir melhor.
+Com a skill Fluxo de edição instalada, leia `~/.claude/skills/fluxo-de-edicao/guias/referencias.md` para medir melhor.

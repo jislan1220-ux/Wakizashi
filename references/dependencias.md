@@ -4,7 +4,9 @@ A skill não traz programas, sons nem música. Confira o que a pessoa já tem e 
 
 ## Como pedir aprovação
 
-Antes de cada download ou instalação, diga o nome, o site, para que serve e o tamanho aproximado. Espere um "sim" para aquele item: um "sim" não vale para os próximos.
+Muita gente só quer colar e seguir, então faça uma pergunta só. Junte tudo o que falta em uma lista, com nome, site, para que serve e tamanho aproximado de cada item, e peça um "sim". Esse "sim" vale apenas para os itens da lista, e a pessoa pode tirar qualquer um deles. Se depois surgir outro item, pergunte de novo.
+
+Quem colou o comando de instalação do README já aprovou as skills citadas nele.
 
 Não crie contas, não faça login e não pague nada pela pessoa. Se o site exigir conta, passe o link e deixe a pessoa baixar. Depois, peça a pasta onde os arquivos foram salvos.
 
@@ -14,6 +16,7 @@ Rode `scripts/preparar_ambiente.sh` só depois de explicar o que ele faz. Ele cr
 
 | Item | Para que serve | Windows | Mac |
 |---|---|---|---|
+| Git | Baixa as skills | `winget install Git.Git` ou [git-scm.com](https://git-scm.com/downloads) | `brew install git` |
 | Python 3.12 | Roda os scripts | `winget install Python.Python.3.12` ou [python.org](https://www.python.org/downloads/) | `brew install python` |
 | FFmpeg | Monta o áudio e o vídeo | `winget install Gyan.FFmpeg` ou [ffmpeg.org](https://ffmpeg.org/download.html) | `brew install ffmpeg` |
 | Google Chrome | Desenha os quadros | [google.com/chrome](https://www.google.com/chrome/) | [google.com/chrome](https://www.google.com/chrome/) |
@@ -52,7 +55,7 @@ As regras desses sites mudam. Antes de a pessoa postar, peça que ela confira a 
 
 ## Skill de SFX e motion: Fluxo de edição
 
-É a skill gratuita de Lucas Leite, com licença MIT. Ofereça no primeiro uso, porque os guias dela ensinam o ofício que complementa esta skill:
+É a skill gratuita de Lucas Leite, com licença MIT e cerca de 150 KB. Se `~/.claude/skills/fluxo-de-edicao/SKILL.md` não existir, coloque na lista do primeiro uso, porque os guias dela ensinam o ofício que complementa esta skill:
 
 - `guias/oficio-motion.md` e `guias/etapa-motion-mapa.md`: como planejar e mover as animações.
 - `guias/etapa-sfx.md`: onde e como colocar cada som.
@@ -64,4 +67,4 @@ Ela também serve para editar vídeo gravado com apresentador. O conceito visual
 git clone https://github.com/LeiteZ/fluxo-de-edicao ~/.claude/skills/fluxo-de-edicao
 ```
 
-Esta skill funciona sem ela. Instale só se a pessoa aprovar.
+Se a pasta já existir, não baixe de novo. Esta skill funciona sem ela, então siga em frente se a pessoa recusar ou se o download falhar.

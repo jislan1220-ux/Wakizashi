@@ -56,9 +56,9 @@ Pergunte se ela quer adicionar vídeos agora. Ela pode arrastar o arquivo para o
 
 ## 7. Preparar o computador
 
-Explique que o vídeo é gerado no computador dela, e confira o que já existe. Para o que faltar, peça aprovação item por item, seguindo `references/dependencias.md`.
+Explique que o vídeo é gerado no computador dela, e confira o que já existe. Junte o que faltar em uma lista só e peça um único "sim", seguindo `references/dependencias.md`.
 
-Ofereça também a skill Fluxo de edição, de Lucas Leite. Explique que ela complementa esta com o ofício de SFX e de motion, e instale só com o "sim" da pessoa.
+Confira se a skill Fluxo de edição, de Lucas Leite, já está instalada. Explique que ela complementa esta com o ofício de SFX e de motion. Se faltar, coloque na mesma lista.
 
 ## 8. Como vamos trabalhar
 

@@ -18,20 +18,21 @@ Na primeira vez, o Claude passa por 8 passos para conhecer você e ensinar como 
 - A narração em áudio e o texto dela. Se ainda não tiver, o Claude ajuda com o roteiro.
 - Seus SFX em `.wav` e sua música.
 
-A skill confere Python, FFmpeg e Chrome. Se faltar algo, ela mostra de onde baixar e pede sua aprovação antes de cada item. Para SFX e música, ela indica sites onde procurar. Para aprofundar SFX e motion, ela oferece a skill gratuita [Fluxo de edição](https://github.com/LeiteZ/fluxo-de-edicao), de Lucas Leite.
+A skill confere Python, FFmpeg e Chrome. Se faltar algo, ela mostra uma lista só com o que vai baixar, e um "sim" seu resolve tudo. Para SFX e música, ela indica sites onde procurar. A parte de SFX e motion vem da skill gratuita [Fluxo de edição](https://github.com/LeiteZ/fluxo-de-edicao), de Lucas Leite, que o comando abaixo instala junto.
 
 ## Como instalar
 
 Abra o Claude Code e cole:
 
 ```
-Instala esta skill para mim: https://github.com/jislan1220-ux/Wakizashi.git
+Instala estas duas skills para mim: https://github.com/jislan1220-ux/Wakizashi.git na pasta ~/.claude/skills/motion-vidro-liquido e https://github.com/LeiteZ/fluxo-de-edicao na pasta ~/.claude/skills/fluxo-de-edicao
 ```
 
 Ou, pelo terminal:
 
 ```bash
 git clone https://github.com/jislan1220-ux/Wakizashi.git ~/.claude/skills/motion-vidro-liquido
+git clone https://github.com/LeiteZ/fluxo-de-edicao ~/.claude/skills/fluxo-de-edicao
 ```
 
 ## Como usar
