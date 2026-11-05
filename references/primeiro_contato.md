@@ -44,7 +44,7 @@ Explique o que cada coisa faz:
 - **Música:** move a luz do fundo, e por isso é preciso saber o segundo em que ela começa.
 - **SFX em `.wav`:** dão peso às entradas e ao corte da logo.
 
-Pergunte o que ela já tem. Para o que faltar, siga `references/dependencias.md`. Se não houver narração, ofereça escrever o roteiro para ela gravar.
+Pergunte o que ela já tem. Se não tiver SFX, ofereça o kit que a skill gera no computador dela. Para o que faltar, siga `references/dependencias.md`. Se não houver narração, ofereça escrever o roteiro para ela gravar.
 
 ## 6. Mais referências (opcional)
 

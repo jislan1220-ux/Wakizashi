@@ -1,6 +1,6 @@
 # O que baixar e de onde
 
-A skill não traz programas, sons nem música. Confira o que a pessoa já tem e ofereça só o que falta.
+A skill não traz programas nem música, e os sons vêm de um gerador próprio ou da pessoa. Confira o que a pessoa já tem e ofereça só o que falta.
 
 ## Como pedir aprovação
 
@@ -25,9 +25,45 @@ No primeiro uso, `analisar.py` baixa sozinho o modelo de transcrição Whisper `
 
 ## SFX
 
-A pessoa escolhe os próprios sons. Peça uma pasta com arquivos `.wav`, e use os nomes deles, sem a extensão, em `sfx.json`. O vídeo pede estes tipos: whoosh curto, whoosh grave, whoosh reverso, riser, clique grave e digitação.
+A pessoa pode usar os próprios sons ou o kit gerado aqui. Peça uma pasta com arquivos `.wav`, e use os nomes deles, sem a extensão, em `sfx.json`. O vídeo pede estes tipos: whoosh curto, whoosh grave, whoosh reverso, riser, clique grave e digitação.
 
-Se ela não tiver sons, ofereça estes sites:
+### Kit gerado
+
+Se ela não tiver sons, ofereça primeiro o kit. Ele é criado no computador dela por `scripts/gerar_sfx.py`, sem site, conta ou download, e não usa sons de terceiros. Depois de `scripts/preparar_ambiente.sh`, rode:
+
+```bash
+$PY scripts/gerar_sfx.py
+```
+
+Os sons ficam em `~/video-tools/motion-vidro/sfx_gerados`, e essa pasta entra em `--biblioteca`. Com `--seed 8`, ou outro número, saem variações novas.
+
+| Arquivo | Onde usar |
+|---|---|
+| `whoosh_curto_1`, `_2`, `_3` | Troca rápida de cena. Alterne para não repetir |
+| `whoosh_medio_1`, `_2` | Movimento maior de câmera |
+| `whoosh_grave` | Peso no impacto |
+| `whoosh_reverso` | Puxa para o impacto, um pouco antes dele |
+| `riser` | Sobe por 3 s até a batida |
+| `clique_grave`, `impacto` | O ponto exato da batida |
+| `clique_ui` | Clique em botão ou cursor |
+| `tecla`, `digitacao` | Texto sendo digitado |
+
+Batida da logo, com o impacto no segundo 9,9:
+
+```json
+[
+  {"nome": "riser", "t": 9.9, "db": -9},
+  {"nome": "whoosh_reverso", "t": 9.85, "db": -8},
+  {"nome": "whoosh_grave", "t": 9.9, "db": -5},
+  {"nome": "clique_grave", "t": 9.9, "db": -3}
+]
+```
+
+Avise que são sons sintéticos e simples: funcionam para começar, e uma biblioteca boa soa mais rica. Peça que ela ouça em `audio_para_aprovar.mp3` e troque o que não gostar.
+
+### Sites
+
+Se ela preferir sons prontos, ofereça estes sites:
 
 | Site | Observação |
 |---|---|

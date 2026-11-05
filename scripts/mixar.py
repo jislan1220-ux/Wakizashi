@@ -4,7 +4,7 @@ Uso: mixar.py narracao musica inicio_musica duracao sfx.json pasta_entrega [--bi
 sfx.json e uma lista de eventos:
   {"nome": "Whoosh_Deep_Short_grave", "t": 9.92, "db": -5}            pico do som cai em t
   {"nome": "Digitacao_Sequencia", "t": 4.18, "db": -13, "alinhar": "inicio"}   comeca em t
-  {"tecla": [5.1, 5.55], "db": -19}                                   teclas soltas no intervalo
+  {"tecla": [5.1, 5.55], "db": -19}                                   teclas soltas; usa tecla.wav ou o arquivo em "som"
 
 --impacto: ate esse tempo a musica sobe de 80% a 100%.
 --cta: a partir desse tempo a musica sobe 45% para a chamada final.
@@ -44,7 +44,7 @@ for ev in json.load(open(a.sfx, encoding='utf8')):
     if 'tecla' in ev:
         t0, t1 = ev['tecla']; r = np.random.RandomState(int(t0 * 10)); t = t0
         while t < t1:
-            por(ev.get('som', 'v4_Typing'), t, ev.get('db', -20) + r.rand() * 3, 'inicio'); t += .07 + r.rand() * .06
+            por(ev.get('som', 'tecla'), t, ev.get('db', -20) + r.rand() * 3, 'inicio'); t += .07 + r.rand() * .06
     else:
         por(ev['nome'], ev['t'], ev.get('db', -10), ev.get('alinhar', 'pico'))
 

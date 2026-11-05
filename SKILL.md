@@ -31,7 +31,7 @@ Fale em português, de forma curta. A pessoa aprova vendo, então mostre arquivo
 - Formato (o padrão é 16:9, 1920x1080, 30 fps).
 - Nome da logo e crédito (pergunte; no vídeo de referência está `BY CREATOR: @diasl_uisvictor`, troque pelo crédito da pessoa).
 
-Peça também uma pasta com os SFX em `.wav`, que ela escolhe. Os nomes em `sfx.json` são os nomes desses arquivos, sem a extensão, e a pasta entra em `--biblioteca`.
+Peça também uma pasta com os SFX em `.wav`. Se ela não tiver, ofereça o kit de `scripts/gerar_sfx.py`, descrito em `references/dependencias.md`. Os nomes em `sfx.json` são os nomes desses arquivos, sem a extensão, e a pasta entra em `--biblioteca`.
 
 Se faltar programa, SFX ou música, siga [references/dependencias.md](references/dependencias.md): junte o que falta em uma lista só e peça um único "sim".
 

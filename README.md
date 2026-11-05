@@ -16,9 +16,9 @@ Na primeira vez, o Claude passa por 8 passos para conhecer você e ensinar como 
 
 - Claude Code instalado no computador. O chat comum não consegue renderizar o vídeo.
 - A narração em áudio e o texto dela. Se ainda não tiver, o Claude ajuda com o roteiro.
-- Seus SFX em `.wav` e sua música.
+- Sua música. Os SFX podem ser seus ou gerados pela própria skill, sem baixar nada.
 
-A skill confere Python, FFmpeg e Chrome. Se faltar algo, ela mostra uma lista só com o que vai baixar, e um "sim" seu resolve tudo. Para SFX e música, ela indica sites onde procurar. A parte de SFX e motion vem da skill gratuita [Fluxo de edição](https://github.com/LeiteZ/fluxo-de-edicao), de Lucas Leite, que o comando abaixo instala junto.
+A skill confere Python, FFmpeg e Chrome. Se faltar algo, ela mostra uma lista só com o que vai baixar, e um "sim" seu resolve tudo. Para música e sons prontos, ela indica sites onde procurar. A parte de SFX e motion vem da skill gratuita [Fluxo de edição](https://github.com/LeiteZ/fluxo-de-edicao), de Lucas Leite, que o comando abaixo instala junto.
 
 ## Como instalar
 
@@ -54,4 +54,4 @@ Você aprova em quatro momentos: prancha de cenas, áudio, preview e pacote fina
 | `assets/` | O vídeo de referência, usado como base do motor de animação, e uma imagem de exemplo |
 | `scripts/` | Análise de áudio e vídeo, mixagem, render e pacote para o DaVinci |
 
-SFX e música não vêm junto. Antes de postar, confira a licença de cada um.
+A música e os sons de outros sites não vêm junto. Antes de postar, confira a licença de cada um.
