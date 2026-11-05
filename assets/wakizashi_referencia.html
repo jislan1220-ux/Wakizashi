@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Wakizashi parte 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:wght@500&display=block" rel="stylesheet">
+<script src="peaks.js"></script>
+<style>
+:root{--g:#34E39A;--r:#FF4D5E;--ln:rgba(255,255,255,.09);--mu:#8A9692}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#050708}
+body{font-family:Inter,'Segoe UI',sans-serif;color:#F2F7F4;-webkit-font-smoothing:antialiased}
+#stage{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden}
+.abs{position:absolute}
+.scn{position:absolute;inset:0;transform-origin:50% 50%}
+
+.h{font-weight:600;letter-spacing:-.025em;line-height:1.08;white-space:nowrap}
+.ch{display:inline-block;white-space:pre}
+/* vidro: so um toque */
+.pn{position:absolute;background:linear-gradient(165deg,rgba(255,255,255,.13),rgba(255,255,255,.03) 42%,rgba(6,10,10,.3));backdrop-filter:blur(30px) saturate(1.9) brightness(1.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;box-shadow:0 40px 90px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(255,255,255,.05),inset 1px 0 0 rgba(255,255,255,.06);overflow:hidden}
+.tb{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--ln);font:500 22px 'JetBrains Mono';color:var(--mu)}
+.dots{display:flex;gap:10px}.dots i{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.2)}
+.code{font:500 34px/1.55 'JetBrains Mono';color:#D9E2DE;padding:26px 30px;white-space:pre}
+.ln{position:relative;display:flex;font:500 30px/58px 'JetBrains Mono';padding:0 26px;white-space:pre}
+.ln b{width:62px;color:#55605E;font-weight:500}
+.tag{display:inline-block;font:500 22px 'JetBrains Mono';padding:8px 16px;border-radius:12px;border:1px solid rgba(52,227,154,.4);color:var(--g);background:rgba(52,227,154,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.ic{width:130px;height:130px;border-radius:34px;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.03));backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;box-shadow:0 24px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.35)}
+.g{color:var(--g);text-shadow:0 0 34px rgba(52,227,154,.55)}
+.r{color:var(--r)}
+.mu{color:#AEB9B5}
+.cur{display:inline-block;background:#fff;margin-left:8px}
+.pn:before{content:"";position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.1) 49%,rgba(255,255,255,.02) 54%,transparent 60%);transform:translateX(var(--sh,0px));pointer-events:none}
+.flt{position:absolute;font:500 24px 'JetBrains Mono';padding:10px 18px;border-radius:14px;color:#D8FBEA;background:rgba(255,255,255,.08);backdrop-filter:blur(14px) saturate(1.7);border:1px solid rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);white-space:nowrap}
+</style></head><body><div id="stage"><canvas id="bgc" width="1280" height="720" style="position:absolute;left:0;top:0;width:1920px;height:1080px"></canvas><div id="fg"></div></div>
+<svg width="0" height="0" style="position:absolute"><filter id="mbx" x="-20%" y="0" width="140%" height="100%"><feGaussianBlur stdDeviation="46 0"/></filter><filter id="mby" x="0" y="-20%" width="100%" height="140%"><feGaussianBlur stdDeviation="0 40"/></filter><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 -.14"/></filter><filter id="brush2" x="-60%" y="-30%" width="220%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.16" numOctaves="2" seed="8" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="A"/></filter><filter id="brush" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.16" numOctaves="2" seed="8" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="A"/></filter></svg>
+<script>
+const ALPHA=location.search.includes('alpha');if(ALPHA){for(const e of[document.documentElement,document.body])e.style.background='transparent'}
+const DUR=34,FPS=30;let T=0;
+const NF=Math.round(DUR*FPS);
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),P=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=p=>1-Math.pow(1-p,5),eio=p=>p<.5?8*p*p*p*p:1-Math.pow(-2*p+2,4)/2,lerp=(a,b,k)=>a+(b-a)*k;
+const spring=p=>p>=1?1:1-Math.exp(-6.5*p)*Math.cos(9*p);
+function rng(s){return()=>(s=(s*16807)%2147483647)/2147483647}
+const H=n=>{const v=Math.sin(n*127.1)*43758.5453;return v-Math.floor(v)};
+const fade=(t0,d=.2)=>P(T,t0,t0+d);
+// texto: letras rolando e entrando com desfoque
+function rt(txt,t0,o={}){const st=o.st??.011,d=o.d??.17,y=o.y??46;return [...txt].map((c,i)=>{const p=eo(P(T,t0+i*st,t0+i*st+d));return `<span class="ch" style="opacity:${T<t0?0:Math.min(1,p*1.8)};transform:perspective(420px) translateY(${y*(1-p)}px) translateZ(${90*(1-p)}px) rotateX(${-85*(1-p)}deg);filter:blur(${6*(1-p)}px)">${c}</span>`}).join('')}
+// troca rolando de uma palavra para outra
+function roll(a,b,t0,fs){const n=Math.max(a.length,b.length);let h='';for(let i=0;i<n;i++){const p=eio(P(T,t0+i*.03,t0+i*.03+.3));const ca=a[i]||' ',cb=b[i]||' ';h+=`<span style="display:inline-block;position:relative;height:1.15em;overflow:hidden;vertical-align:top"><span style="display:block;transform:translateY(${-p*1.15}em);line-height:1.15em"><span style="display:block;filter:blur(${p>0&&p<1?5:0}px)">${ca}</span><span style="display:block;filter:blur(${p>0&&p<1?5:0}px)">${cb}</span></span></span>`}return h}
+const typed=(txt,t0,cps)=>txt.slice(0,Math.floor(Math.max(0,T-t0)*cps));
+const cursor=(w,h,va=-8)=>`<span class="cur" style="width:${w}px;height:${h}px;vertical-align:${va}px;opacity:${Math.sin(T*11)>-.3?1:0}"></span>`;
+function burst(sz,col='#D97757',rot=0){let h='';for(let i=0;i<12;i++){const a=i*30+(i%2?4:-3)+rot,L=i%3==0?50:i%3==1?44:47;h+=`<rect x="-3.6" y="-${L}" width="7.2" height="${L}" rx="3.2" transform="rotate(${a})" fill="${col}"/>`}return `<svg width="${sz}" height="${sz}" viewBox="-52 -52 104 104" style="display:block">${h}</svg>`}
+function fan(cx,cy,k,o=1,rot=0){let h='';for(let i=0;i<46;i++){const q=(i-23)/23,a=(-38+rot)*Math.PI/180+q*.17*(.4+.6*k),L=1700*k;const c=Math.abs(q)<.3?'#34E39A':'#1F8A68';for(const s of[1,-1])h+=`<line x1="${cx}" y1="${cy}" x2="${cx+s*Math.cos(a)*L}" y2="${cy+s*Math.sin(a)*L}" stroke="${c}" stroke-width="1.5" opacity="${(1-Math.abs(q))*.8}"/>`}return `<svg class="abs" style="left:0;top:0;opacity:${o}" width="1920" height="1080">${h}</svg>`}
+const tracks=(n,w,seed,t0)=>{const r=rng(seed*53+1);let h='';for(let i=0;i<n;i++){let x=r()*50,c='',j=0;while(x<w-60){const d=70+r()*170,e=eo(P(T,t0+i*.05+j*.03,t0+i*.05+j*.03+.3));c+=`<i class="abs" style="left:${x}px;top:4px;height:30px;width:${Math.min(d,w-x)*e}px;border-radius:7px;background:${i%3==0?'#34E39A':i%3==1?'#1F8A68':'rgba(255,255,255,.2)'}"></i>`;x+=d+8;j++}h+=`<div style="position:relative;height:38px;margin-bottom:8px;width:${w}px">${c}</div>`}return h};
+// onda sonora da musica de verdade (picos por quadro)
+function wave(w,h,n){let s='';const head=Math.round(n*.6),f=T*FPS;for(let i=0;i<n;i++){const idx=Math.floor(f+(i-head)*1.45),v=(typeof PEAKS!='undefined'&&PEAKS[idx]!=null)?PEAKS[idx]:.05,a=Math.max(5,v*h),past=i<head;s+=`<rect x="${i*w/n}" y="${(h-a)/2}" width="${w/n*.55}" height="${a}" rx="2" fill="${past?'#34E39A':'rgba(255,255,255,.2)'}"/>`}return `<svg width="${w}" height="${h}" style="display:block">${s}<rect x="${head*w/n-1}" y="0" width="3" height="${h}" fill="#fff"/></svg>`}
+const FS=`precision highp float;
+uniform vec2 uR,uP,uFoc,uBc,uBd,uSc;uniform float uF,uT,uE,uK,uDim,uHit,uShock,uBl,uBi,uBg;
+float h(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*f*(f*(f*6.-15.)+10.);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float v=0.,a=.56;mat2 m=mat2(.8,.6,-.6,.8);for(int i=0;i<3;i++){v+=a*n(p);p=m*p*1.9+7.1;a*=.36;}return v;}
+float flow(vec2 s,float t){vec2 w=vec2(fbm(s+vec2(0.,t*.5)),fbm(s+vec2(5.2,1.3-t*.42)));vec2 v=vec2(fbm(s+1.9*w+vec2(1.7+t*.22,9.2)),fbm(s+1.9*w+vec2(8.3,2.8-t*.2)));return fbm(s+2.1*v);}
+void main(){
+ vec2 p=gl_FragCoord.xy/uR.y;p.y=1.-p.y;
+ vec2 dc=p-uSc,el=dc*vec2(.62,1.);float r=length(el),ring=exp(-pow((r-uShock)/.075,2.))*uHit;
+ vec2 q=p+normalize(dc+1e-4)*ring*.14;
+ float far=flow(q*.72+uP*.42,uF),near=flow(q*1.3+uP*1.05+9.,uF*1.25+4.);
+ vec2 d=(q-uFoc)*vec2(.78,1.);float g=exp(-dot(d,d)*2.9);
+ float body=smoothstep(.24,.56,far),silk=pow(1.-abs(2.*near-1.),7.);
+ float pool=.16+.9*g+uE*.22;
+ vec3 deep=vec3(.008,.05,.058),tea=vec3(.012,.27,.31),eme=vec3(.03,.56,.36),mint=vec3(.42,1.,.72);
+ vec3 c=vec3(.006,.014,.016);
+ c+=mix(deep,tea,smoothstep(.24,.54,near))*body*pool*1.2;
+ c+=eme*pow(body,2.2)*smoothstep(.3,.56,near)*pool*.95;
+ c+=mint*silk*body*pool*(.06+.16*uE+.14*uK);
+ c*=uDim;
+ vec2 bn=vec2(-uBd.y,uBd.x);vec2 rl=p-uBc;float al=dot(rl,uBd),pe=abs(dot(rl,bn));
+ float tp=smoothstep(uBl,uBl*.15,abs(al));
+ float core=.0011/(pe+.0011),halo=.016/(pe+.03);
+ float gl=exp(-pow((al-uBg)/.075,2.))*exp(-pe*pe/.0005);
+ float fl=exp(-pow((al-uBg)/.34,2.))*exp(-pe*pe/.000035);
+ c+=(vec3(.36,1.,.68)*halo*.55+vec3(.86,1.,.93)*core*1.3)*tp*uBi;
+ c+=(vec3(.8,1.,.9)*gl*1.6+vec3(.5,1.,.76)*fl*.9)*tp*min(uBi*1.4,1.);
+ float sm=.5+.9*fbm(q*vec2(1.5,5.)+vec2(uF*1.1,0.));
+ c+=mix(eme,mint,exp(-pe*7.))*exp(-pe*3.2)*uHit*sm*1.25;
+ c+=mint*ring*.28;
+ c=1.-exp(-c*1.3);
+ vec2 v=(p-vec2(.889,.5))*vec2(.92,1.25);c*=1.-smoothstep(.3,1.05,length(v))*.72;
+ c+=(h(gl_FragCoord.xy+fract(uT)*91.)-.5)*.018;
+ gl_FragColor=vec4(c,1.);}`;
+let GL=null,GU={};
+function glInit(){const cv=document.getElementById('bgc');const g=cv.getContext('webgl',{preserveDrawingBuffer:true,antialias:false,alpha:false});if(!g)throw new Error('sem webgl');
+ const sh=(ty,src)=>{const o=g.createShader(ty);g.shaderSource(o,src);g.compileShader(o);if(!g.getShaderParameter(o,g.COMPILE_STATUS))throw new Error(g.getShaderInfoLog(o));return o};
+ const pr=g.createProgram();g.attachShader(pr,sh(g.VERTEX_SHADER,'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}'));g.attachShader(pr,sh(g.FRAGMENT_SHADER,FS));g.linkProgram(pr);g.useProgram(pr);
+ g.bindBuffer(g.ARRAY_BUFFER,g.createBuffer());g.bufferData(g.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),g.STATIC_DRAW);const al=g.getAttribLocation(pr,'a');g.enableVertexAttribArray(al);g.vertexAttribPointer(al,2,g.FLOAT,false,0,0);
+ for(const u of['uR','uP','uFoc','uBc','uBd','uSc','uF','uT','uE','uK','uDim','uHit','uShock','uBl','uBi','uBg'])GU[u]=g.getUniformLocation(pr,u);g.viewport(0,0,cv.width,cv.height);GL=g}
+// a velocidade do fundo segue a musica: tempo de fluxo acumulado pelos picos
+const PK=f=>{let v=0,n=0;for(let i=-4;i<=4;i++){const x=typeof PEAKS!='undefined'?PEAKS[f+i]:null;if(x!=null){v+=x;n++}}return n?v/n:.2};
+const FLOW=[0];for(let f=1;f<NF+60;f++)FLOW[f]=FLOW[f-1]+(.42+1.5*PK(f))/30;
+const HITS=[[9.92,1],[16.78,.34],[22.92,.4],[31.16,.34]];
+// onde a luz fica em cada cena: atras do vidro
+const FOC=[[0,.98,.68],[2.85,.9,.72],[4.05,1.05,.45],[6.05,.98,.52],[8.3,.89,.5],[10.85,.75,.52],[15.4,.89,.62],[17.6,.6,.62],[19.3,1.2,.42],[20.2,.95,.72],[21.6,.89,.5],[23.2,.89,.72],[27.3,.89,.6],[28.6,.89,.45]];
+function focus(t){let i=0;while(i<FOC.length-1&&FOC[i+1][0]<=t)i++;const a=FOC[Math.max(0,i-1)],b=FOC[i],k=eio(P(t,b[0]-.08,b[0]+.55));return[lerp(a[1],b[1],k),lerp(a[2],b[2],k)]}
+const BL={x:.889,y:.402,a:-11*Math.PI/180,h:9.92};
+function drawBg(){if(ALPHA||!GL)return;const g=GL,f=Math.min(NF+59,Math.max(0,Math.round(T*FPS)));let flw=FLOW[f],hit=0,sh=0,sc=null;
+ for(const[t0,a]of HITS){if(T>=t0){const u=T-t0;flw+=a*1.15*(1-Math.exp(-u*3.2));const v=a*Math.exp(-u*(a==1?4.2:6));if(v>hit){hit=v;sh=eo(P(u,0,.75))*1.5;sc=a==1?[BL.x,BL.y]:null}}}
+ const fo=focus(T);let px=0,py=0;for(const c of SC){const[dx,dy]=c.dir||[0,0];const k=eio(P(T,c.s-.02,c.s+.42));px+=dx*.62*k;py+=dy*.46*k}
+ const th=T-BL.h,gr=eio(P(T,8.34,9.62));let bl=0,bi=0,bg=0;
+ if(T>=8.34&&T<BL.h){bl=.05+.82*gr;bi=(.22+.6*gr)*(1+.1*Math.sin(T*47))*(1-P(T,9.8,9.9));bg=lerp(-.75,.75,eio(P(T,8.5,9.8)))}
+ else if(th>=0&&th<1){bl=2.2;bi=3.4*Math.exp(-th*6.2);bg=9}
+ const dim=T<BL.h?lerp(1,.36,eio(P(T,8.42,9.86))):lerp(.36,1,eo(P(th,0,.5)));
+ const blk=1-P(T,28.45,28.9)*.42;
+ const set=(n,...v)=>g['uniform'+v.length+'f'](GU[n],...v);
+ set('uR',g.canvas.width,g.canvas.height);set('uP',px,py);set('uFoc',fo[0],fo[1]);set('uBc',BL.x,BL.y);set('uBd',Math.cos(BL.a),Math.sin(BL.a));set('uSc',...(sc||fo));
+ set('uF',flw);set('uT',T);set('uE',PK(f));set('uK',beat());set('uDim',dim*blk);set('uHit',hit);set('uShock',sh);set('uBl',bl);set('uBi',bi);set('uBg',bg);
+ g.drawArrays(g.TRIANGLES,0,3);g.finish()}
+function bgl(){return ALPHA?'':`<svg class="abs" style="left:0;top:0;opacity:.055;pointer-events:none" width="1920" height="1080"><rect width="1920" height="1080" filter="url(#grain)"/></svg>`}
+const BEATS=[];for(let b=1.39;b<34;b+=.7205)BEATS.push(b);
+function beat(){let v=0;for(const b of BEATS){if(T>=b&&T<b+.45)v=Math.max(v,Math.exp(-(T-b)*8))}return v}
+// pecas de vidro soltas em profundidade: dao paralaxe quando a camera gira
+const FL=['ease out','keyframe','30 fps','curvas','render','timeline','\u25C6','motion'];
+function floaters(sc,ry,rx){if(sc.nofl)return'';const r=rng(Math.round(sc.s*100)+7);let h='';for(let i=0;i<5;i++){const side=i%2,x0=side?1500+r()*280:50+r()*230,y0=280+r()*660,z=-520+r()*760,sp=16+r()*26,t=FL[Math.floor(r()*FL.length)],ph=r()*6,bl=Math.abs(z+60)/130,sc2=1500/(1500-z);
+ const x=x0+Math.sin(T*.9+ph)*sp+Math.sin(ry*Math.PI/180)*z*.9,y=y0+Math.cos(T*.8+ph)*sp-Math.sin(rx*Math.PI/180)*z*.9;
+ h+=`<div class="flt" style="left:${x}px;top:${y}px;transform:perspective(900px) scale(${sc2}) rotateY(${Math.sin(T+ph)*28}deg) rotateX(${Math.cos(T*.8+ph)*20}deg);filter:blur(${bl}px);opacity:${.7-Math.abs(z)/1400}">${t}</div>`}return h}
+// entrada e saida: foco por desfoque e camera continua
+function wrap(sc,html){const TR=.24,e=eio(P(T,sc.s,sc.s+TR)),x=eio(P(T,sc.e-.02,sc.e+TR-.02));const[dx,dy]=sc.dir||[1,0],A=sc.a3??1;
+ const st=spring(P(T,sc.s,sc.s+.75)),u=Math.max(0,T-sc.s),prog=Math.min(1,u/(sc.e-sc.s)),kb=beat();
+ const ry=-dx*62*(1-e)+dx*44*x+dx*(1-st)*-16+A*8*Math.sin(T*1.25+sc.s),rx=dy*44*(1-e)-dy*36*x+(1-st)*6+A*4*Math.sin(T*1.05+sc.s*2),rz=dx*-5*(1-e)+A*.9*Math.sin(T*.8+sc.s);
+ const tz=-820*(1-e)+760*x+(sc.push??170)*prog+kb*34,tx=dx*520*(1-e)-dx*640*x+A*16*Math.sin(T*.7),ty=dy*300*(1-e)-dy*380*x+A*9*Math.cos(T*.9);
+ const op=Math.min(e,1-x),mv=(e<1||x>0);const fx=mv?(dx!=0?'url(#mbx)':(dy!=0?'url(#mby)':`blur(${(1-e)*20}px)`)):'none';
+ const base=`transform:perspective(1500px) translate3d(${tx}px,${ty}px,${tz}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg);`;
+ return `<div class="scn" style="${base}${op<1?`opacity:${op};`:''}${mv?`filter:${fx};`:''}">${floaters(sc,ry,rx)}${html}</div>`}
+
+const SC=[
+{s:0,e:2.85,dir:[0,-1],zoom:.02,f(){const sl=eo(P(T,0,.85)),x=lerp(420,-30,sl),b=lerp(14,2.5,P(T,.1,.8)),e=eo(P(T,1.4,1.75)),del=eo(P(T,2.18,2.42));
+ return `<div class="abs h" style="left:${x}px;top:60px;font-size:430px;letter-spacing:-.045em;color:${T<.5?'#BDF6D2':'#D6F8E3'};filter:blur(${b}px)">Sempre</div>
+ <div class="abs h" style="left:430px;top:540px;font-size:84px">${rt('tive ',.32)}<span class="r">${rt('preconceito',.62)}</span></div>
+ <div class="pn" style="left:430px;top:${670+90*(1-e)}px;width:1060px;opacity:${T<1.4?0:e};transform:perspective(1500px) translateZ(60px) rotateX(${30*(1-e)+8}deg) rotateY(-8deg)"><div class="tb"><span>opiniao/motion.md</span><span class="dots"><i></i><i></i><i></i></span></div><div class="ln" style="margin:12px 0 14px;color:#FFB0B8"><i class="abs" style="left:0;top:0;bottom:0;width:${100*del}%;background:rgba(255,77,94,.24);box-shadow:inset 5px 0 0 var(--r)"></i><b style="position:relative">-</b><span style="position:relative">${typed('motion com IA',1.54,16)}</span></div></div>`}},
+{s:2.85,e:4.05,dir:[1,0],zoom:.05,f(){const pr=spring(P(T,3.26,3.7));return `<div class="abs h mu" style="left:0;right:0;top:300px;text-align:center;font-size:120px">${rt('parte',2.92)}</div><div class="abs" style="left:0;right:0;top:400px;text-align:center;line-height:1"><span class="h g" style="display:inline-block;font-size:390px;line-height:1.15;transform:scale(${.94+.06*pr})">${T<3.68?roll('um','dois',3.2,390):'dois'}</span></div><div class="abs" style="left:${1450-(T-2.85)*30}px;top:150px;transform:rotate(6deg);filter:blur(4px);opacity:.5"><div class="tag" style="font-size:30px">parte_01 \u2713</div></div>`}},
+{s:4.05,e:5.85,dir:[-1,0],zoom:.09,f(){const gl=P(T,5.18,5.4);return `<div class="pn" style="left:240px;top:210px;width:1440px;height:640px;transform:perspective(1500px) translateZ(40px) rotateY(${-26+(T-4.05)*17}deg) rotateX(${7-(T-4.05)*3}deg)"><div class="tb"><span class="dots"><i></i><i></i><i></i></span><span>zsh</span></div><div class="code" style="font-size:62px;line-height:1.5"><span class="g">$</span> ${typed('claude',4.2,16)}
+${T>4.58?`<span style="color:#9AA6A2">&gt;</span> ${typed('bora de motion?',4.6,24)}`:''}${cursor(32,70,-10)}</div></div>`}},
+{s:5.85,e:8.3,dir:[0,1],zoom:.02,f(){const e=eo(P(T,5.95,6.3));return `<div class="abs h" style="left:170px;top:190px;font-size:100px">${rt('Depois da ',6.1)}<span class="g">${rt('música,',6.44)}</span></div>
+ <div class="pn" style="left:170px;top:${380+70*(1-e)}px;width:1580px;height:340px;opacity:${e};transform:perspective(1500px) translateZ(20px) rotateX(${18*(1-e)+6}deg) rotateY(${-6+(T-6)*4}deg)"><div class="tb"><span>trilha.wav</span><span class="tag" style="padding:4px 12px">tocando</span></div><div style="padding:48px 40px 0">${wave(1500,190,130)}</div></div>
+ <div class="abs h mu" style="left:170px;top:790px;font-size:70px">${rt('eu apresento a vocês...',7.12)}</div>`}},
+{s:8.3,e:10.85,dir:[1,0],nofl:1,a3:.22,push:60,f(){const HT=BL.h,hitd=T>=HT,th=T-HT;
+ // tensao lenta ate o corte; depois o nome assenta com empurrao leve
+ const z=hitd?lerp(1.5,1.26,eo(P(T,HT,HT+.34)))+.12*P(T,HT+.34,10.85):lerp(1.0,1.42,eio(P(T,9.42,HT)));
+ const sk=hitd?Math.exp(-th*9):0,sx=Math.sin(th*91)*24*sk,sy=Math.cos(th*73)*15*sk;
+ const WD=`<span style="color:#fff">WAKI</span><span style="color:#34E39A">ZASHI</span>`;
+ const e=hitd?eo(P(th,0,.26)):0,d=(1-e)*640,gp=(1-e)*46,ca=Math.cos(BL.a),sa=Math.sin(BL.a);
+ const half=(top,dd,gap,op)=>{const cp=top?'polygon(-40% -60%,140% -60%,140% 34%,-40% 68%)':'polygon(-40% 68%,140% 34%,140% 160%,-40% 160%)';const sg=top?1:-1;return `<div class="abs" style="inset:0;clip-path:${cp};opacity:${op};transform:translate(${sg*dd*ca+sa*gap*sg}px,${sg*dd*sa-ca*gap*sg}px)">${WD}</div>`};
+ let word='';
+ if(hitd&&e<.999){for(const[m,o]of[[1.5,.16],[1.22,.3]]){word+=half(true,d*m,gp*m,o)+half(false,d*m,gp*m,o)}word+=half(true,d,gp,1)+half(false,d,gp,1)}
+ else if(hitd){word=`<div class="abs" style="inset:0">${WD}</div>`}
+ const swp=P(T,HT+.26,HT+.72);const sheen=hitd&&swp>0&&swp<1?`<div class="abs" style="inset:0;color:#fff;-webkit-mask-image:linear-gradient(105deg,transparent 42%,#000 50%,transparent 58%);-webkit-mask-size:320% 100%;-webkit-mask-position:${100-100*eio(swp)}% 0;opacity:.85">WAKIZASHI</div>`:'';
+ const c=hitd?18*Math.exp(-th*10):0,gw=hitd?Math.exp(-th*4.5):0;
+ const shd=(c>.4?`drop-shadow(${c}px 0 0 rgba(255,45,85,.7)) drop-shadow(${-c}px 0 0 rgba(50,235,255,.7)) `:'')+(gw>.02?`drop-shadow(0 0 ${46*gw}px rgba(150,255,210,${.9*gw})) `:'')+'drop-shadow(0 0 26px rgba(0,0,0,.85))';
+ // faiscas riscando a partir do fio da lamina
+ let spk='';if(hitd&&th<1.15){const r=rng(913);const X0=BL.x*1080,Y0=BL.y*1080;for(let i=0;i<110;i++){const pos=(r()*2-1)*940,sd=r()<.5?-1:1,v=320+r()*r()*2300,vp=(r()-.5)*(260+r()*520),life=.3+r()*.8,del=r()*.05,wd=1+r()*2.3,mi=r()<.35,t=th-del;if(t<=0||t>=life)continue;const k=(1-Math.exp(-3*t))/3,vn=Math.exp(-3*t),ux=sd*v,x=pos+ux*k,y=vp*k+95*t*t,l=.032;const X=X0+x*ca-y*sa,Y=Y0+x*sa+y*ca,dx=(ux*ca-vp*sa)*vn*l,dy=(ux*sa+vp*ca)*vn*l+190*t*l,a=Math.pow(1-t/life,1.6);spk+=`<line x1="${X}" y1="${Y}" x2="${X-dx}" y2="${Y-dy}" stroke="${mi?'#FFFFFF':'#7DFFC4'}" stroke-width="${wd}" stroke-linecap="round" opacity="${a}"/>`}}
+ const sparks=spk?`<svg class="abs" style="left:0;top:0;mix-blend-mode:screen;filter:blur(7px);opacity:.9" width="1920" height="1080">${spk}</svg><svg class="abs" style="left:0;top:0;mix-blend-mode:screen" width="1920" height="1080">${spk}</svg>`:'';
+ // fio de luz por cima das letras, so nos primeiros quadros
+ const fw=hitd?Math.exp(-th*11):0,X0=BL.x*1080,Y0=BL.y*1080,Lx=1400*ca,Ly=1400*sa;
+ const fio=fw>.02?`<svg class="abs" style="left:0;top:0;mix-blend-mode:screen" width="1920" height="1080"><line x1="${X0-Lx}" y1="${Y0-Ly}" x2="${X0+Lx}" y2="${Y0+Ly}" stroke="#7DFFC4" stroke-width="${26*fw}" opacity="${.5*fw}" style="filter:blur(10px)"/><line x1="${X0-Lx}" y1="${Y0-Ly}" x2="${X0+Lx}" y2="${Y0+Ly}" stroke="#fff" stroke-width="${5*fw}" opacity="${fw}"/></svg>`:'';
+ return `<div class="abs" style="left:0;right:0;top:220px;display:flex;flex-direction:column;align-items:center;transform:translate(${sx}px,${sy}px) scale(${z});transform-origin:50% 280px">
+ ${T<HT?`<div class="h mu" style="position:absolute;top:-96px;font-size:62px;opacity:${1-P(T,9.42,9.6)}">${rt('o protocolo',8.7)}</div>`:''}
+ <div style="font:500 58px 'Source Serif 4',Georgia,serif;display:flex;align-items:center;gap:16px;color:#F5EFE4;opacity:${fade(9.42,.15)}">${burst(56,'#D97757',T*18)}Claude</div>
+ <div style="position:relative;font:400 300px/1.04 'Anton',Impact,sans-serif;transform:skewX(-15deg);filter:url(#brush2) ${shd};white-space:nowrap;margin:2px 0 14px"><div style="visibility:hidden">WAKIZASHI</div>${word}${sheen}</div>
+ <div style="font:700 40px 'JetBrains Mono';letter-spacing:.06em;color:#fff;background:rgba(5,7,8,.75);padding:6px 18px;border-radius:8px;min-height:64px;opacity:${T<10.02?0:1}"><span style="color:#34E39A">${typed('BY CREATOR:',10.04,70)}</span> ${typed('@diasl_uisvictor',10.18,90)}</div></div>${sparks}${fio}`}},
+{s:10.85,e:15.4,dir:[-1,0],f(){const e=eo(P(T,11.0,11.35));const lines=[['12','referencias: meus_videos/'],['13','ritmo: cortes_na_batida']];const fp=eio(P(T,13.95,14.5))*.2;
+ const dl=eo(P(T,13.7,13.9)),ad=eo(P(T,14.22,14.62));const tail=[['15','curvas: suaves'],['16','revisao: antes_do_render']];
+ const ln=(n,t,i)=>`<div class="ln" style="opacity:${fade(11.5+i*.14,.15)}"><b>${n}</b>${typed(t,11.5+i*.14,70)}</div>`;
+ return `<div class="abs h" style="left:130px;top:120px;font-size:88px">${T<13.42?rt('Eu criei essa ',11.0)+`<span class="g">${rt('skill',11.74)}</span>`:`<span style="filter:blur(0)">${rt('no estilo que ',13.42)}<span class="g">${rt('eu gosto',14.3)}</span></span>`}</div>
+ <div class="abs" style="inset:0;transform-origin:130px 280px;transform:scale(${1+fp})">
+ <div class="pn" style="left:130px;top:${280+60*(1-e)}px;width:1200px;opacity:${e};transform:perspective(1500px) translateZ(30px) rotateY(${14-(T-11)*2.4}deg) rotateX(4deg)"><div class="tb"><span>skills/wakizashi/SKILL.md</span><span class="tag" style="padding:4px 12px">wakizashi</span></div><div style="padding:14px 0 20px">${lines.map((l,i)=>ln(l[0],l[1],i)).join('')}
+ <div class="ln" style="opacity:${fade(11.8,.15)};color:${T>13.7?'#FF9AA4':'#D9E2DE'}"><i class="abs" style="left:0;top:0;bottom:0;width:${100*dl}%;background:rgba(255,77,94,.22);box-shadow:inset 5px 0 0 var(--r)"></i><b style="position:relative">14</b><span style="position:relative;${T>14.0?'text-decoration:line-through':''}">estilo: generico</span></div>
+ <div style="height:${58*eo(P(T,14.05,14.25))}px;overflow:hidden"><div class="ln" style="color:#E6FFF3"><i class="abs" style="left:0;top:0;bottom:0;width:${100*ad}%;background:linear-gradient(90deg,rgba(52,227,154,.55),rgba(52,227,154,.12));box-shadow:inset 5px 0 0 var(--g)"></i><b style="position:relative;color:#BFEFD9">14</b><span style="position:relative">${typed('estilo: o_que_eu_gosto',14.22,60)}</span></div></div>
+ ${tail.map((l,i)=>ln(l[0],l[1],i+3)).join('')}</div></div></div>
+ <div class="pn" style="left:${1440-(T-10.85)*14}px;top:${520-(T-10.85)*6}px;width:640px;height:380px;transform:rotate(4deg);filter:blur(5px);opacity:.75"><div class="tb"><span>edicao</span></div><div style="padding:24px">${tracks(5,560,12,11.3)}</div></div>`}},
+{s:15.4,e:17.6,dir:[0,-1],zoom:.05,f(){const txt='o máximo.';const ch=[...txt].map((c,i)=>{const t0=16.62+i*.028,p=P(T,t0,t0+.5),e=spring(p),w=Math.sin((T-t0)*7+i*.8)*Math.exp(-(T-t0)*3.2)*36*(T>t0?1:0);return `<span class="ch" style="opacity:${T<t0?0:Math.min(1,p*5)};transform:translateY(${70*(1-e)+w}px);filter:blur(${10*(1-eo(p))}px)">${c}</span>`}).join('');
+ return `<div class="abs h mu" style="left:0;right:0;top:250px;text-align:center;font-size:92px">${rt('e cara, ',15.6)}${rt('eu achei',16.22)}</div><div class="abs h g" style="left:0;right:0;top:370px;text-align:center;font-size:310px">${ch}</div>`}},
+{s:17.6,e:21.5,dir:[1,0],f(){const st=T<19.45?0:T<20.34?1:T<21.05?2:3;const foc=[[1.42,510,420],[1.3,-470,380],[1.4,0,-280],[1,0,0]];const prev=[[1,0,0],...foc];const tt=[18.3,19.45,20.34,21.05][st];const k=eio(P(T,tt,tt+.22));const a=prev[st],b=foc[st];const z=lerp(a[0],b[0],k),cx=lerp(a[1],b[1],k),cy=lerp(a[2],b[2],k);
+ const bl=i=>(st==i)?0:(st==3?0:4.5*k);const dim=i=>(st==i)?1:(st==3?lerp(.25,1,k):1-.78*k);const e1=eo(P(T,18.15,18.5));const cur=eo(P(T,19.5,20.2));const dash=eo(P(T,20.4,20.95));
+ let ks='';[[60,250],[300,230],[560,70],[820,40]].forEach(([x,y],i)=>{const v=P(T,19.5+i*.16,19.62+i*.16);ks+=`<rect x="${x-11}" y="${y-11}" width="22" height="22" transform="rotate(45 ${x} ${y}) scale(1)" fill="#34E39A" opacity="${v}"/>`});
+ const head=T<19.45?`Ele monta <span class="g">${rt('a estrutura,',18.3)}</span>`:T<20.34?`Ele monta <span class="g">${rt('as curvas',19.45)}</span>`:`Ele monta <span class="g">${rt('a lógica da cena',20.34)}</span>`;
+ return `<div class="abs h" style="left:110px;top:64px;font-size:78px;z-index:9">${T<18.3?rt('Ele monta',17.8):head}</div>
+ <div class="abs" style="inset:0;transform:translate(${cx}px,${cy}px) scale(${z});transform-origin:50% 55%">
+ <div class="pn" style="left:110px;top:230px;width:720px;height:360px;transform:perspective(1500px) translateZ(${st==0?90:-40}px) rotateY(24deg) rotateX(5deg);filter:blur(${bl(0)}px);opacity:${e1*dim(0)}"><div class="tb"><span>estrutura</span><span class="tag" style="padding:3px 10px;opacity:${fade(19.1)}">pronta</span></div><div style="padding:26px 30px">${tracks(5,650,4,18.35)}</div></div>
+ <div class="pn" style="left:880px;top:190px;width:930px;height:400px;transform:perspective(1500px) translateZ(${st==1?90:-40}px) rotateY(-22deg) rotateX(5deg);filter:blur(${bl(1)}px);opacity:${fade(19.3,.25)*dim(1)}"><div class="tb"><span>curvas</span><span style="color:#34E39A">ease out</span></div><svg width="930" height="340" style="position:absolute;left:0;top:58px"><path d="M60 250 C200 250,240 240,300 230 S 480 90,560 70 S 760 40,820 40" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="${1-cur}" fill="none" stroke="#34E39A" stroke-width="5" style="filter:drop-shadow(0 0 8px #34E39A)"/><path d="M60 300 H880" stroke="rgba(255,255,255,.12)" stroke-width="2"/><path d="M300 230 L230 248 M300 230 L370 212" stroke="#6B7874" stroke-width="2" opacity="${fade(19.8)}"/>${ks}</svg></div>
+ <div class="pn" style="left:430px;top:640px;width:1060px;height:310px;transform:perspective(1500px) translateZ(${st==2?90:-20}px) rotateX(16deg);filter:blur(${bl(2)}px);opacity:${fade(20.2,.25)*dim(2)}"><div class="tb"><span>lógica da cena</span></div><svg width="1060" height="250" style="position:absolute;left:0;top:58px"><path d="M250 125H420" stroke="#34E39A" stroke-width="3" stroke-dasharray="4 10" opacity="${P(T,20.42,20.6)}"/><path d="M640 125H810" stroke="#34E39A" stroke-width="3" stroke-dasharray="4 10" opacity="${P(T,20.56,20.74)}"/>${[['gancho',50,20.36],['virada',420,20.5],['logo',810,20.64]].map(([t,x,t0])=>`<g opacity="${fade(t0,.12)}"><rect x="${x}" y="80" width="200" height="90" rx="16" fill="rgba(255,255,255,.07)" stroke="#34E39A" stroke-opacity=".6" stroke-width="2"/><text x="${x+100}" y="136" text-anchor="middle" font-family="JetBrains Mono" font-size="28" fill="#E6FFF3">${t}</text></g>`).join('')}${T>20.6?`<circle cx="${250+(((T-20.6)*400)%560)}" cy="125" r="8" fill="#fff" style="filter:drop-shadow(0 0 8px #34E39A)"/>`:''}</svg></div></div>`}},
+{s:21.5,e:23.75,dir:[0,1],zoom:.03,f(){const d=eo(P(T,21.95,22.45)),cut=T>=22.92,cp=eo(P(T,22.92,23.06)),sh=cut&&T<23.15?(H(T*30)-.5)*16:0,gl=cut?1-P(T,22.92,23.3):0;
+ return `<div class="abs h" style="left:0;right:0;top:170px;text-align:center;font-size:94px">${rt('sem eu tocar ',21.64)}${rt('em um único',22.22)}</div><svg class="abs" style="left:${760+sh}px;top:320px;overflow:visible" width="400" height="400" viewBox="0 0 400 400"><rect x="100" y="100" width="200" height="200" rx="18" transform="rotate(45 200 200)" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="${1-d}" fill="${cut?`rgba(255,77,94,${.1+.3*gl})`:'rgba(255,255,255,.05)'}" stroke="${cut?'#FF4D5E':'#E6FFF3'}" stroke-width="6" style="filter:drop-shadow(0 0 ${6+26*gl}px ${cut?'#FF4D5E':'#34E39A'})"/>${cut?`<path d="M50 350 L${50+300*cp} ${350-300*cp}" stroke="#FF4D5E" stroke-width="10" stroke-linecap="round"/>`:''}</svg><div class="abs h" style="left:0;right:0;top:760px;text-align:center;font-size:130px;opacity:${T<22.86?0:1};transform:scale(${1.3-.3*eo(P(T,22.9,23.15))});filter:blur(${10*(1-eo(P(T,22.9,23.1)))}px)">keyframe<span class="r">.</span></div><div class="tag abs" style="left:1320px;top:480px;font-size:34px;border-color:rgba(255,77,94,.5);color:#FF8A95;background:rgba(255,77,94,.1);opacity:${fade(23.1,.15)};transform:translateY(${16*(1-eo(P(T,23.1,23.3)))}px)">manuais: 0</div>`}},
+{s:23.75,e:27.3,dir:[-1,0],f(){const ti=eo(P(T,23.8,24.1)),tl=eo(P(T,25.0,25.35));const orbX=(T%1.1)/1.1;const ck=[25.66,25.88,26.3];
+ return `<div class="abs" style="left:0;right:0;top:220px;display:flex;justify-content:center;align-items:center;gap:38px;opacity:${ti}"><div class="ic"><svg width="60" height="80" viewBox="0 0 60 80"><rect x="16" y="2" width="28" height="50" rx="14" fill="#34E39A"/><path d="M6 36a24 24 0 0 0 48 0M30 60v16" fill="none" stroke="#34E39A" stroke-width="6" stroke-linecap="round"/></svg></div>${[0,1,2,3,4].map(i=>{const dd=Math.abs(i/4-orbX);return `<i style="width:14px;height:14px;border-radius:50%;background:#34E39A;opacity:${Math.max(.18,1-dd*3)};box-shadow:0 0 14px #34E39A"></i>`}).join('')}<div class="ic">${burst(92,'#D97757',T*20)}</div></div>
+ <div class="abs h" style="left:0;right:0;top:430px;text-align:center;font-size:88px">${rt('Você ',23.92)}<span class="g">${rt('dita a direção',24.24)}</span></div>
+ <div class="pn" style="left:430px;top:${600+70*(1-tl)}px;width:1060px;opacity:${tl};transform:perspective(1500px) translateZ(20px) rotateX(${22-(T-25)*5}deg)"><div class="tb"><span>${typed('trabalho pesado',25.66,28)||'&nbsp;'}</span><span style="color:#34E39A">Claude</span></div><div style="padding:14px 0 18px">${['estrutura','curvas','sincronia'].map((t,i)=>`<div class="ln" style="justify-content:space-between"><span>${t}</span><span style="color:#34E39A;opacity:${fade(ck[i],.06)};transform:scale(${1.5-.5*eo(P(T,ck[i],ck[i]+.15))})">\u2713</span></div>`).join('')}</div></div>`}},
+{s:27.3,e:28.6,dir:[1,0],zoom:.05,f(){return `<div class="abs h" style="left:0;right:0;top:170px;text-align:center;font-size:110px">${rt('Quer testar ',27.48,{st:.012})}<span class="g">${rt('essa skill?',27.92,{st:.012})}</span></div><div class="pn" style="left:380px;top:390px;width:1160px;height:400px;transform:perspective(1500px) translateZ(30px) rotateX(${14-(T-27.3)*9}deg) rotateY(${-10+(T-27.3)*12}deg)"><div class="tb"><span class="dots"><i></i><i></i><i></i></span><span>zsh</span></div><div class="code" style="font-size:52px"><span class="g">$</span> ${typed('skill testar wakizashi',27.5,38)}
+${T>28.12?'<span class="g">\u2713</span> acesso liberado':''}${cursor(28,60,-8)}</div></div>`}},
+{s:28.6,e:40,dir:[0,0],nofl:1,a3:.7,push:60,f(){const bx=eo(P(T,28.82,29.1));const z=1+.16*eio(P(T,29.1,29.7))-.16*eio(P(T,30.2,30.7));const pr=T>=30.9?1-.14*Math.exp(-(T-30.9)*7):1,rp=P(T,30.9,31.5),sent=T>=31.16?1-P(T,31.16,31.9):0;
+ return `<div class="abs h" style="left:0;right:0;top:220px;text-align:center;font-size:120px">${rt('Comenta',28.82)}</div>
+ <div class="abs" style="inset:0;transform:scale(${z});transform-origin:50% 45%"><div class="abs" style="left:430px;top:400px;width:1060px;height:170px;border-radius:40px;background:linear-gradient(165deg,rgba(255,255,255,.16),rgba(255,255,255,.04));backdrop-filter:blur(26px) saturate(1.9);border:2px solid rgba(52,227,154,${.25+.45*bx});box-shadow:0 0 ${50+70*sent}px rgba(52,227,154,${.25+.4*sent}),inset 0 1px 0 rgba(255,255,255,.35);display:flex;align-items:center;justify-content:space-between;padding:0 44px;opacity:${bx};transform:translateY(${30*(1-bx)}px)"><span style="display:flex;align-items:center;gap:26px;font-size:104px;font-weight:600;letter-spacing:-.03em;min-width:0">${burst(86,'#D97757',T*22)}${typed('Claude',29.14,14)}${cursor(6,96,0)}</span><span style="position:relative;width:100px;height:100px;border-radius:50%;background:#34E39A;color:#04140E;display:flex;align-items:center;justify-content:center;font-size:58px;font-weight:700;transform:scale(${pr})">↑${rp>0&&rp<1?`<i class="abs" style="inset:${-120*rp}px;border-radius:50%;border:3px solid rgba(52,227,154,${1-rp})"></i>`:''}</span></div></div>
+ <div class="abs h" style="left:0;right:0;top:${640}px;text-align:center;font-size:66px">${rt('Te mando o ',29.74)}${rt('acesso',30.38)}</div><div class="abs h g" style="left:0;right:0;top:730px;text-align:center;font-size:66px">${rt('no direct ',30.68)}${rt('agora',31.16)}</div>`}},
+];
+function setTime(t){T=t;if(!GL&&!ALPHA)glInit();drawBg();let h=bgl();for(const sc of SC){if(t>=sc.s&&t<sc.e+.32)h+=wrap(sc,sc.f())}
+ const st=document.getElementById('stage');document.getElementById('fg').innerHTML=h;
+ let pn=0;for(const[hh,a]of[[9.92,.03],[16.78,.012],[22.92,.03],[31.16,.012]]){if(t>=hh&&t<hh+.7)pn=Math.max(pn,a*Math.exp(-(t-hh)*7))}
+ st.style.setProperty('--sh',`${-900+((T*520)%2000)}px`);st.style.transform=`scale(${1.005+pn})`;st.style.opacity=1-P(t,DUR-.7,DUR-.05)}
+window.__setTime=setTime;
+window.__ready=Promise.all(['500 40px Inter','600 40px Inter','700 40px Inter','400 40px Anton','500 40px "Source Serif 4"','500 40px "JetBrains Mono"','700 40px "JetBrains Mono"'].map(f=>document.fonts.load(f,'AÇÃO aç@\u2713↑'))).then(()=>document.fonts.ready);
+setTime(parseFloat(location.hash.slice(1))||0);
+</script></body></html>
