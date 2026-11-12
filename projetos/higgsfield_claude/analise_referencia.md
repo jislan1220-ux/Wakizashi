@@ -270,3 +270,5 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 - `sfx_v32.py` (v31 +): toques de letra 3 dB mais baixos, com mais sala (reverb 0,22 em vez de 0,04), um pouco mais abertos (±25°) e levemente para cima; todos os sons das cenas Seedance (`evc`, inclusive a rosnada) +4 dB.
 - Mix: `--sfx_lufs -24.3` (em vez de -26.5) para os outros efeitos ficarem no mesmo nível da v31 (conferido no trecho do KATANA). Resultado: efeitos da cena 1 e da cena 2 +3,5 dB; mix na cena 1 +0,9 dB.
 - Vídeo: imagem da v25 com `-c:v copy` → `entrega_v32/`.
+
+**v32 aprovada pelo Victor ("gostei") em 12/11/2026.** É a versão final do vídeo Higgsfield + Claude: imagem da v25 + áudio de `sfx_v32.py` com `mix_3d.py --limpa --sfx_lufs -24.3 --mus_lufs -25.2`.
