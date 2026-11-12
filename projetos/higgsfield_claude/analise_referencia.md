@@ -69,3 +69,11 @@ Regras da skill que entram: cortes no ritmo da música (as falas se encaixam nas
 - `sfx_cinema.py`: passagem com doppler, mergulho, hit metálico, swell reverso, riser de cinema e queda de grave. Tudo sintetizado, sem som de terceiros.
 - `sfx_3d.json`: cada SFX tem trajetória (`az` e `el`) ligada à animação. O iPhone girando passa por trás da cabeça. O mergulho vai da frente para trás e para cima. Os risers dão a volta subindo. A caixa de comentário cai de cima.
 - Níveis: voz -19,5, música -27,5 (8 dB abaixo da voz, eram 12), SFX -22,5 LUFS. Master -14 LUFS, pico -1 dB.
+
+## Áudio v04: SFX do Victor (pacote SFX Pires Visuals)
+
+- 12 sons do pacote, com prefixo `pv_`: Whoosh 1, 2 e 3 (graves e pesados), Impact, Suspense Riser, Metallic Riser, Shine, Echo Snap, Phone typing, Digital Camera Power On, Digital Camera click e Digital autofocus.
+- Os whooshes do pacote ficam nas trocas de cena, com a trajetória 3D de antes. O Impact está nas 4 batidas principais: 0,88, 3,40, 15,10 e 23,25 s.
+- Suspense Riser gira subindo até o "Caralho"; Metallic Riser dá duas voltas até a logo. Shine no holograma (2,95 s), em "três dias grátis" e na logo. Echo Snap nas palavras batendo, autofocus e power on no iPhone, Phone typing na caixa de comentário.
+- Dos sons sintetizados ficam só as camadas de cinema: braam, sub drop, boom, queda de grave, swell reverso e um pouco do mergulho. O hit metálico fica só no "Caralho", mais baixo.
+- Eventos em `sfx_3d_v04.json`. Os arquivos do pacote não vão para o repositório.
