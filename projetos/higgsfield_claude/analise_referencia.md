@@ -148,4 +148,11 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 - Correções: o flash do corte dentro do card estava 100% branco (desde a v15) e agora está igual aos outros cortes secos; a frase anterior não volta mais por um instante depois de cada cena Seedance.
 - Áudio: `build_audio.py '[[3.288,"c1",24],[11.18,"c2",24]]' v18`; `times.js` → `times18.json`; `sfx_v17.py times18.json salvo/sfx sfx_v18.json` (a digitação do prompt agora segue a palavra "falo"); `mix_3d.py ... --dur 44.4474 --fim 42.1974`.
 - Render: `FPS=60 node render_all.js anim.html fr 0 2667`.
-- Pendente: o Victor vai mandar a legenda dele; se o texto for diferente do que está no `FR` do `anim.html`, trocar e renderizar de novo.
+- O Victor mandou a legenda: o texto é igual ao do `FR`.
+
+## Versão 16:9 v19 (só o texto da narração na tela)
+
+- Pedido do Victor: no lugar do texto que eu tinha posto, usar só o texto da narração dele, acompanhando a voz.
+- Saíram das cenas Seedance o título repetido ("O QUE EU CONSIGO FAZER", "TRANSFORMA EM VÍDEO.") e o prompt digitado ("uma mulher montando um dragão" etc.). Durante as pausas da voz, só a cena roda com a música; fica apenas o selo pequeno HIGGSFIELD · SEEDANCE 2.0.
+- A caixa de prompt não digita mais "Cria um vídeo cinematográfico…": agora digita "Eu só falo o que eu quero," palavra por palavra no tempo da voz, com "falo" e "quero" em destaque.
+- O áudio é o mesmo da v18 (`entrega_v18x/mix.wav`). Os 4 clipes Seedance foram enviados separados para o Victor (`salvo/clipes/`).
