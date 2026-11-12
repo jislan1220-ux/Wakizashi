@@ -233,3 +233,8 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 - v25 pronta e conferida (folha de quadros ok): `entrega_v25/higgsfield_claude_16x9_v25_24fps.mp4`, 24 fps, 44,4 s. Enviada ao Victor junto com a v24 em 12/11/2026.
 - Entregas que já foram para o Victor: v23 e v24 em 24 fps, os 4 clipes Seedance, `legenda_v17.srt` e a legenda do post com a collab e os prompts (`entrega_v20/legenda_post_instagram.txt`).
 - Preferências do Victor: o texto na tela é sempre o da narração dele; som leve, limpo e 3D; sons das cenas baixos; menos movimento; 24 fps.
+
+## v26 (12/11/2026): efeitos +3 dB
+- Victor aprovou a v25 ("ficou mais top ainda"), só achou o FX um pouco baixo.
+- v26 = imagem da v25 (sem novo render) + mix com os efeitos 3 dB acima da v24 (equivale a `--sfx_lufs -26.5`). Feito com `remix_stems.py <stems da v24> <saida> 3`, que soma voz + trilha_3d + sfx_3d e repete o master do `mix_3d.py` (loudnorm -14 LUFS, pico -1 dBFS).
+- Saída: `entrega_v26/higgsfield_claude_16x9_v26_24fps.mp4` (fora do git). Preferência do Victor atualizada: FX nesse nível.
