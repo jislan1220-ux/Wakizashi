@@ -313,7 +313,7 @@ function clipBg(m,t){let out='';for(const[a,b,c,cuts,mode]of CLIPBG){if(m<a||m>=
     out+=phone(src,{y:760-260*e+fly*-40,w:1000,rx:22-18*e,ry:24-20*e+Math.sin(t*1.25)*4,rz:5-5*e,sc:(.35+.4*e)*(1+.04*kb)+fly*3.2,op:Math.min(e*1.5,1)*(1-fly*.85),glow:1+fly*2})+tag}}
   return out}
 /* ---------- cenas Seedance no ritmo: 8 batidas, corte no meio, soco de zoom em cada batida ---------- */
-const CLIPS={c1:['uma mulher montando um dragão','DRAGÃO',[.2,3.5]],c2:['o dragão cuspindo fogo nos cavaleiros','O CERCO',[1.0,3.0]],c3:['orcs atacando com metralhadoras','GUERRA',[.2,3.2]]};
+const CLIPS={c1:['uma mulher montando um dragão','O QUE EU<br>CONSIGO FAZER',[.2,3.5]],c2:['o dragão cuspindo fogo nos cavaleiros','TRANSFORMA<br>EM VÍDEO.',[1.0,3.0]],c3:['orcs atacando com metralhadoras','PRA QUEM<br>ASSINAR O CLAUDE',[.2,3.2]]};
 function clipView(c,lu,t){const[txt,tag,segs]=CLIPS[c],half=CLIPD/2,sg=lu<half?0:1,ct=segs[sg]+(lu-sg*half);
   const src=frameOf(c,ct),kb=beat(t),pin=eo(P(lu,0,.35)),out=P(lu,CLIPD-.2,CLIPD),bar=eo(P(lu,0,.4))*(1-eo(out));
   const cutk=hitAmt(lu,half,.25),ti=eo(P(lu,.25,.7)),n=Math.floor(cl((lu-.6)/1.0)*txt.length);
@@ -321,7 +321,7 @@ function clipView(c,lu,t){const[txt,tag,segs]=CLIPS[c],half=CLIPD/2,sg=lu<half?0
      <img src="${src}" style="width:100%;height:100%;object-fit:cover;filter:contrast(1.08) saturate(1.12)"></div>
    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.6))"></div>
    <div style="position:absolute;left:0;right:0;top:0;height:${130*bar}px;background:#000"></div><div style="position:absolute;left:0;right:0;bottom:0;height:${130*bar}px;background:#000"></div>
-   <div class="a G" style="left:960px;top:520px;transform:translate(-50%,-50%) scale(${1.4-.4*ti});font-size:250px;letter-spacing:.06em;color:rgba(255,255,255,${.9*ti*(1-out)});text-shadow:0 0 50px rgba(255,122,26,.8),0 10px 40px rgba(0,0,0,.6);filter:blur(${(1-ti)*16}px)">${tag}</div>
+   <div class="a G" style="left:960px;top:520px;transform:translate(-50%,-50%) scale(${1.4-.4*ti});font-size:190px;letter-spacing:.04em;line-height:.9;text-align:center;color:rgba(255,255,255,${.9*ti*(1-out)});text-shadow:0 0 50px rgba(255,122,26,.8),0 10px 40px rgba(0,0,0,.6);filter:blur(${(1-ti)*16}px)">${tag}</div>
    <div class="a M gl" style="left:960px;bottom:${150}px;transform:translateX(-50%);font-size:22px;color:#fff;padding:12px 20px;border-radius:16px;opacity:${cl((lu-.5)*3)*(1-out)}">${HF} HIGGSFIELD · SEEDANCE 2.0 &nbsp;<span style="color:${LIME}">PROMPT:</span> ${txt.slice(0,n)}<span style="opacity:${Math.floor(lu*4)%2}">▍</span></div>`;}
 // batidas de corte e entradas
 let _off=0;for(const[a]of INSL){const ra=a+_off;HITS.push([ra+.02,.8]);FLASH.push([ra+CLIPD/2,'#fff',.04]);SLASH.push([ra+CLIPD/2-.03,-100,900,2050,150]);BURST.push([ra+CLIPD/2,960,540,80,Math.PI*2,0,1.1]);HITS.push([ra+CLIPD/2,.9]);_off+=CLIPD}
