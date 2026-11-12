@@ -107,6 +107,6 @@ Para refazer numa sessão nova:
 1. Ambiente "Wakizashi (Higgsfield)" (rede do Higgsfield e do Hugging Face liberada).
 2. Montar a pasta de trabalho: `anim.html`, `peaks.js` e `fonts/` de `anim_16x9_v12/`. Os clipes vão em `clips/<id>/f_0001.jpg`... a 30 fps, extraídos de `salvo/clipes/` (c1 = dragão com a cara, cortado 80% para tirar a vinheta; c2 = cerco com fogo; o1 e o2 = clipes antigos): `ffmpeg -i X.mp4 -vf "fps=30,scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810" -q:v 3 clips/c2/f_%04d.jpg`.
 3. Áudio: `build_audio.py '[[3.288,"c1"],[11.18,"c2"]]' v12`. Precisa da narração (`salvo/audio/`), da música FEN (que o Victor reenvia, entrando no segundo 29), dos SFX (`salvo/sfx_cc0/`, mais o pacote Pires Visuals que o Victor tem) e de `trilha_cinematica.py`. O script refaz `peaks.js`.
-4. Render: `node render_all.js anim.html fr 0 954`, com o Chrome usando swiftshader (4 processos), e depois o ffmpeg junta com `mix.wav`.
+4. Render: `FPS=60 node render_all.js anim.html fr 0 1909` (60 fps, como no PDF da Wakizashi; o ffmpeg junta com -framerate 60), com o Chrome usando swiftshader (4 processos), e depois o ffmpeg junta com `mix.wav`.
 
 Pendente: cena dos orcs atacando com metralhadoras (Seedance 2.0 Mini, 6 s, 720p, cerca de 6 créditos; o saldo estava em 0,5). Ela entra como terceira inserção, depois de "assinar o Claude", em [19.47,"c3"].
