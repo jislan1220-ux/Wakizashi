@@ -1,24 +1,130 @@
 [
- {"nome": "boom_cauda", "t": 0.02, "db": -11, "alinhar": "inicio"},
- {"nome": "whoosh_medio_1", "t": 0.5, "db": -13},
- {"nome": "whoosh_curto_1", "t": 1.25, "db": -12},
- {"nome": "riser", "t": 3.40, "db": -9},
- {"nome": "whoosh_reverso", "t": 3.35, "db": -8},
- {"nome": "impacto", "t": 3.40, "db": -4},
- {"nome": "sub_drop", "t": 3.40, "db": -5, "alinhar": "inicio"},
- {"nome": "braam", "t": 3.40, "db": -8, "alinhar": "inicio"},
- {"nome": "clique_grave", "t": 3.40, "db": -4},
- {"nome": "whoosh_curto_2", "t": 6.02, "db": -11},
- {"nome": "whoosh_medio_2", "t": 8.9, "db": -14},
- {"nome": "whoosh_grave", "t": 11.33, "db": -8},
- {"nome": "whoosh_curto_3", "t": 14.21, "db": -12},
- {"nome": "impacto", "t": 15.10, "db": -7},
- {"nome": "sub_drop", "t": 15.10, "db": -9, "alinhar": "inicio"},
- {"nome": "whoosh_reverso", "t": 19.6, "db": -10},
- {"nome": "clique_ui", "t": 19.66, "db": -12},
- {"nome": "digitacao", "t": 20.3, "db": -16, "alinhar": "inicio"},
- {"nome": "whoosh_reverso", "t": 23.2, "db": -8},
- {"nome": "braam", "t": 23.25, "db": -5, "alinhar": "inicio"},
- {"nome": "boom_cauda", "t": 23.25, "db": -4, "alinhar": "inicio"},
- {"nome": "clique_grave", "t": 23.25, "db": -4}
+ {
+  "nome": "boom_cauda",
+  "t": 0.02,
+  "db": -11,
+  "alinhar": "inicio"
+ },
+ {
+  "nome": "whoosh_medio_1",
+  "t": 0.5,
+  "db": -13
+ },
+ {
+  "nome": "whoosh_curto_1",
+  "t": 1.25,
+  "db": -12
+ },
+ {
+  "nome": "impacto",
+  "t": 0.88,
+  "db": -7
+ },
+ {
+  "nome": "sub_drop",
+  "t": 0.88,
+  "db": -9,
+  "alinhar": "inicio"
+ },
+ {
+  "nome": "riser",
+  "t": 3.4,
+  "db": -9
+ },
+ {
+  "nome": "whoosh_reverso",
+  "t": 3.35,
+  "db": -8
+ },
+ {
+  "nome": "impacto",
+  "t": 3.4,
+  "db": -4
+ },
+ {
+  "nome": "sub_drop",
+  "t": 3.4,
+  "db": -5,
+  "alinhar": "inicio"
+ },
+ {
+  "nome": "braam",
+  "t": 3.4,
+  "db": -8,
+  "alinhar": "inicio"
+ },
+ {
+  "nome": "clique_grave",
+  "t": 3.4,
+  "db": -4
+ },
+ {
+  "nome": "whoosh_curto_2",
+  "t": 6.02,
+  "db": -11
+ },
+ {
+  "nome": "whoosh_medio_2",
+  "t": 8.9,
+  "db": -14
+ },
+ {
+  "nome": "whoosh_grave",
+  "t": 11.33,
+  "db": -8
+ },
+ {
+  "nome": "whoosh_curto_3",
+  "t": 14.21,
+  "db": -12
+ },
+ {
+  "nome": "impacto",
+  "t": 15.1,
+  "db": -7
+ },
+ {
+  "nome": "sub_drop",
+  "t": 15.1,
+  "db": -9,
+  "alinhar": "inicio"
+ },
+ {
+  "nome": "whoosh_reverso",
+  "t": 19.6,
+  "db": -10
+ },
+ {
+  "nome": "clique_ui",
+  "t": 19.66,
+  "db": -12
+ },
+ {
+  "nome": "digitacao",
+  "t": 20.3,
+  "db": -16,
+  "alinhar": "inicio"
+ },
+ {
+  "nome": "whoosh_reverso",
+  "t": 23.2,
+  "db": -8
+ },
+ {
+  "nome": "braam",
+  "t": 23.25,
+  "db": -5,
+  "alinhar": "inicio"
+ },
+ {
+  "nome": "boom_cauda",
+  "t": 23.25,
+  "db": -4,
+  "alinhar": "inicio"
+ },
+ {
+  "nome": "clique_grave",
+  "t": 23.25,
+  "db": -4
+ }
 ]

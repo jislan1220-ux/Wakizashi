@@ -54,3 +54,9 @@ Regras da skill que entram: cortes no ritmo da música (as falas se encaixam nas
 - Camadas cinematográficas sintéticas (`trilha_cinematica.py`): braam, sub drop e boom com cauda, mais o kit de `scripts/gerar_sfx.py`. Eventos em `sfx.json`.
 - Master: -14 LUFS, pico -1 dB. Duração do vídeo: 25,5 s.
 - A música não vai para o repositório. Antes de postar, confira os direitos: o Instagram pode silenciar ou bloquear o áudio.
+
+## Áudio v02
+
+- Pedido do Victor: música a partir do segundo 29 da faixa.
+- O 808 (29,88 s da faixa) agora cai em 0,88 s do vídeo, com impacto e sub drop. O "Caralho" (3,40 s) mantém riser, braam e impacto, e fica a 0,06 s de uma batida.
+- A pausa do grave da faixa (45,54 s) cai em 16,54 s do vídeo, sob "três dias grátis" e a chamada. O corte final continua em 23,25 s.
