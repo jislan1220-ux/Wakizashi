@@ -60,3 +60,12 @@ Regras da skill que entram: cortes no ritmo da música (as falas se encaixam nas
 - Pedido do Victor: música a partir do segundo 29 da faixa.
 - O 808 (29,88 s da faixa) agora cai em 0,88 s do vídeo, com impacto e sub drop. O "Caralho" (3,40 s) mantém riser, braam e impacto, e fica a 0,06 s de uma batida.
 - A pausa do grave da faixa (45,54 s) cai em 16,54 s do vídeo, sob "três dias grátis" e a chamada. O corte final continua em 23,25 s.
+
+## Áudio v03: 3D imersivo (ouvir de fone)
+
+- Pedido do Victor: música mais cinematográfica, girando em 3D e subindo e descendo, com SFX fortes e imersivos.
+- `mix_3d.py`: a música acima de 140 Hz gira em volta da cabeça. A posição vem da diferença de tempo e de volume entre os ouvidos, da sombra da cabeça e de um timbre mais escuro quando o som está atrás. A volta leva 9 s antes do drop, 4,6 s depois dele e acelera nos últimos 4 s. Ela sobe e desce a cada 3,1 s, com mais brilho em cima e mais escuro embaixo. O grave fica parado no centro.
+- Reverb de sala de cinema: forte na intro, mais leve depois do drop. Um pad grave na tônica (A♯) gira no sentido contrário, bem baixo.
+- `sfx_cinema.py`: passagem com doppler, mergulho, hit metálico, swell reverso, riser de cinema e queda de grave. Tudo sintetizado, sem som de terceiros.
+- `sfx_3d.json`: cada SFX tem trajetória (`az` e `el`) ligada à animação. O iPhone girando passa por trás da cabeça. O mergulho vai da frente para trás e para cima. Os risers dão a volta subindo. A caixa de comentário cai de cima.
+- Níveis: voz -19,5, música -27,5 (8 dB abaixo da voz, eram 12), SFX -22,5 LUFS. Master -14 LUFS, pico -1 dB.
