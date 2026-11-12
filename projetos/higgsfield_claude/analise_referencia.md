@@ -170,3 +170,10 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 - Em tela cheia, a pílula digita a frase em 2,6 s; se a frase não cabe, mostra só o final. No card, a frase passa como letreiro (260 px/s).
 - Continuam da v20 a fala só dentro da caixa de vidro e o flash suave. O áudio é o mesmo da v18.
 - Os prompts originais do Seedance (do histórico do Higgsfield) e a legenda do post, com a collab, estão em `entrega_v20/legenda_post_instagram.txt` (fora do git).
+
+## v21 em 24 fps, com som das cenas
+
+- O Victor pediu o vídeo em 24 quadros por segundo: `FPS=24 node render_all.js anim.html fr 0 1067` e `ffmpeg -framerate 24`.
+- Ele também pediu os sons das próprias cenas (fogo, dragão, vento), baixos, com cara de cinema. O Higgsfield estava com 0,5 crédito, então os sons foram sintetizados em `sfx_cenas_v21.py`: vento com rajadas, rugido (rosnado com formantes), batida de asa, baforada de fogo, brasas, passo em ponte de madeira e passagem do dragão. Os eventos são somados aos do `sfx_v18.json` e saem em `sfx_v21.json`.
+- Medição: as cenas ficam de 8 a 15 dB abaixo da mixagem; a cena como um todo sobe só 0,2 dB.
+- Áudio: `sfx_cenas_v21.py times18.json salvo/sfx sfx_v18.json sfx_v21.json`, depois `mix_3d.py voz_v18.wav trilha_v18.wav salvo/sfx sfx_v21.json saida --dur 44.4474 --fim 42.1974`. O vídeo de 24 fps é remontado com esse `mix.wav` (`-c:v copy`).
