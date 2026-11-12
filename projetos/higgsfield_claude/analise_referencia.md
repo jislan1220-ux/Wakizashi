@@ -238,3 +238,9 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 - Victor aprovou a v25 ("ficou mais top ainda"), só achou o FX um pouco baixo.
 - v26 = imagem da v25 (sem novo render) + mix com os efeitos 3 dB acima da v24 (equivale a `--sfx_lufs -26.5`). Feito com `remix_stems.py <stems da v24> <saida> 3`, que soma voz + trilha_3d + sfx_3d e repete o master do `mix_3d.py` (loudnorm -14 LUFS, pico -1 dBFS).
 - Saída: `entrega_v26/higgsfield_claude_16x9_v26_24fps.mp4` (fora do git). Preferência do Victor atualizada: FX nesse nível.
+
+## v27 (12/11/2026): efeitos do pacote de referência do Victor
+- O Victor mandou um pacote de efeitos (Drive, 12 pastas, 284 sons: Whoosh, Riser, tension, Trailer FX, glitch, UI & tech, camera, Coins, Paper, Film Burn, Transições ar/água). Medição: os whooshes, impactos e risers do pacote têm 80 a 95% da energia abaixo de 120 Hz; os nossos tinham 2%. Por isso os efeitos pareciam baixos mesmo com +3 dB.
+- `sfx_v27.py`: mesma marcação da v24, com os sons do pacote: whooshes graves (Woosh_1/2/4/6) nos cortes; Riser_antecipation_3 + impact_3/impact_4 (tension) na entrada das cenas Seedance; Woosh_cinematic e Woosh_cinematic_6 nas trocas para o card; impact_4 na abertura; cliques de UI (digital-click_notification_3, click-mouse_2); Coins_2 no "3 dias grátis"; no KATANA, Riser Sci-Fi & Cyberpunk #8 + impact (sub) + os sinos. Som das cenas igual ao da v24.
+- Mix: `mix_3d.py salvo/sfx_v27/voz_v18.wav salvo/sfx_v27/trilha_v24.wav salvo/sfx_v27 ev_v27.json saida --dur 44.4474 --fim 42.1974 --limpa --sfx_lufs -26.5 --mus_lufs -25.2` (eventos: `sfx_v27.py salvo/sfx_v27/times18.json ev_v27.json`). Todos os sons usados, a voz, a trilha e os tempos estão em `salvo/sfx_v27/`.
+- Vídeo: imagem da v25 com `-c:v copy` → `entrega_v27/` (fora do git).

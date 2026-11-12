@@ -72,6 +72,8 @@ Com a skill Fluxo de edição instalada, leia `~/.claude/skills/fluxo-de-edicao/
 $PY scripts/mixar.py narracao.mp3 musica.mp3 INICIO_MUSICA DUR sfx.json entrega_v01 --biblioteca PASTA_DOS_SFX
 ```
 
+Escolha efeitos com peso no grave (whoosh, impacto e riser de trailer), como explicado na parte de áudio de `references/estilo.md`. Se a pessoa reclamar que o efeito está baixo, troque por sons mais graves antes de só subir o volume.
+
 Mande `audio_para_aprovar.mp3`. Os níveis de partida são os aprovados: a música fica baixa, os SFX aparecem, a trilha gira entre os ouvidos e abaixa sozinha na fala. Se a pessoa pedir mudança, ajuste só o que pediu.
 
 ### 5. Teste de quadros (aprovação se mudou algo visual grande)

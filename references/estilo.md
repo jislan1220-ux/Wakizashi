@@ -56,6 +56,9 @@ Som do impacto: riser subindo até a batida, whoosh reverso um pouco antes, whoo
 - Ele pediu a música mais baixa, o SFX mais alto e a trilha "indo para os dois lados do ouvido, tipo 3D", e aprovou esse resultado. Os graves ficam parados no centro para o efeito não incomodar.
 - Trilha abaixa sozinha sob a voz e sobe na chamada final.
 - Master final em -14 LUFS, pico em -1 dB.
+- Aprovado no vídeo Higgsfield + Claude (v24 a v27): trilha limpa e leve, sem pad grave e quase sem reverb, girando devagar em volta da cabeça (uma volta a cada 14 s). Poucos efeitos, um por momento, sem empilhar camadas: um whoosh por corte atravessando de um lado para o outro, riser + impacto na entrada de cada cena forte, cliques de interface baixinhos. Os sons das cenas (vento, rugido, passos) ficam baixos, de 6 a 8 dB abaixo da música e com pouco eco.
+- Peso do efeito vem do grave, não do volume. O Victor achou os efeitos baixos com whooshes finos (de ar); com +3 dB ainda pareciam baixos. A referência dele é um pacote de efeitos de trailer em que os whooshes, impactos e risers têm a maior parte da energia abaixo de 120 Hz. Prefira esse tipo de som: whoosh grave nos cortes, impacto de sub na batida, riser largo chegando na batida. Nível de partida dos efeitos: 4 a 5 dB abaixo da voz (`mix_3d.py --sfx_lufs -26.5` com a voz em -19,5 LUFS).
+- Se a pessoa mandar um pacote de efeitos como referência, meça cada pasta (volume, grave abaixo de 120 Hz, centro do espectro, largura estéreo) e compare com os efeitos em uso antes de trocar. Depois troque só os sons, mantendo a marcação de tempo aprovada; a imagem não precisa de render novo, basta remontar o vídeo com `-c:v copy`.
 
 ## Entrega
 
