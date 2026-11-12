@@ -1,7 +1,7 @@
 """Monta a trilha cinematografica: intro abafada que abre no drop, corte seco no fim
 e camadas sinteticas (braam, sub drop, boom) na pasta de SFX.
 Uso: trilha_cinematica.py musica.mp3 inicio drop_video fim_video saida.wav pasta_sfx"""
-import sys, subprocess, pathlib, numpy as np
+import sys, os, subprocess, pathlib, numpy as np  # LIMPA=1: intro sem eco (v24)
 from scipy.io import wavfile
 from scipy.signal import butter, sosfilt
 
@@ -10,7 +10,7 @@ SR = 48000
 
 # intro: passa-baixa que abre de 350 Hz ate 2,5 kHz, volume subindo; depois do drop, musica cheia
 fc = (f"[0:a]atrim=0:{drop},asetpts=PTS-STARTPTS,lowpass=f=350,lowpass=f=900,volume='0.55+0.45*t/{drop}':eval=frame,"
-      f"afade=t=in:st=0:d=0.6,aecho=0.8:0.6:120|260:0.25|0.15[a];"
+      f"afade=t=in:st=0:d=0.6{'' if os.environ.get('LIMPA') else ',aecho=0.8:0.6:120|260:0.25|0.15'}[a];"
       f"[0:a]atrim={drop}:{fim},asetpts=PTS-STARTPTS,afade=t=out:st={fim - drop - 0.03}:d=0.03[b];"
       f"[a][b]concat=n=2:v=0:a=1,aresample={SR}[o]")
 subprocess.run(['ffmpeg', '-y', '-v', 'error', '-ss', str(ini), '-t', str(fim), '-i', mus, '-filter_complex', fc,

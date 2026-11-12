@@ -21,6 +21,7 @@ ap.add_argument('--drop', type=float, default=0.88)
 ap.add_argument('--fim', type=float, default=23.25)
 ap.add_argument('--mus_lufs', type=float, default=-27.5)  # nivel da trilha antes do master
 ap.add_argument('--sfx_lufs', type=float, default=-22.5)  # nivel dos efeitos antes do master
+ap.add_argument('--limpa', action='store_true')  # v24: musica limpa (sem pad, pouco reverb, giro lento e suave)
 a = ap.parse_args()
 SR = 48000; N = int(a.dur * SR); OUT = pathlib.Path(a.saida); (OUT / 'stems').mkdir(parents=True, exist_ok=True)
 t = np.arange(N) / SR
@@ -90,13 +91,17 @@ grave = filt(mus.mean(1), 'low', 140, 4)          # grave parado no centro
 alto = mus - filt(mus, 'low', 140, 4)
 mid = alto.mean(1); side = (alto[:, 0] - alto[:, 1]) / 2
 # velocidade da volta: lenta antes do drop, rapida depois, acelera no fim
-vel = np.where(t < a.drop, 360 / 9.0, 360 / 4.6)
-vel = vel * (1 + 0.6 * np.clip((t - (a.fim - 4)) / 4, 0, 1))
+vel = np.where(t < a.drop, 360 / 9.0, 360 / 4.6) if not a.limpa else np.full(N, 360 / 14.0)
+vel = vel * (1 + (0.6 if not a.limpa else 0) * np.clip((t - (a.fim - 4)) / 4, 0, 1))
 az = np.cumsum(vel) / SR - 30
-el = 0.85 * np.sin(2 * np.pi * t / 3.1)            # sobe e desce a cada ~3 s
+el = 0.85 * np.sin(2 * np.pi * t / 3.1) if not a.limpa else 0.35 * np.sin(2 * np.pi * t / 9.0)  # sobe e desce
 rot = binaural(mid, az, el)
-mus3 = rot * 0.9 + np.stack([side, -side], 1) * 0.3 + grave[:, None] * 0.95
-mus3 = mus3 + reverb(mus3) * np.where(t < a.drop, 0.7, 0.28)[:, None]
+if a.limpa:  # metade fica parada e aberta (estereo original), metade gira em volta: 3D sem embolar
+    mus3 = rot * 0.7 + mid[:, None] * 0.25 + np.stack([side, -side], 1) * 1.1 + grave[:, None] * 0.95
+    mus3 = mus3 + reverb(mus3) * 0.08
+else:
+    mus3 = rot * 0.9 + np.stack([side, -side], 1) * 0.3 + grave[:, None] * 0.95
+    mus3 = mus3 + reverb(mus3) * np.where(t < a.drop, 0.7, 0.28)[:, None]
 
 # camada de trailer: pad grave na tonica da musica, girando no sentido contrario
 y_k, _ = librosa.load(a.trilha, sr=22050, duration=20)
@@ -107,7 +112,7 @@ pad = filt(pad, 'low', 900) * (0.6 + 0.4 * np.sin(2 * np.pi * t / 7)) * np.clip(
 pad = pad * np.clip((a.fim + 0.6 - t) / 0.6, 0, 1)
 pad3 = binaural(pad, -az * 0.7 + 180, -el * 0.6)
 pad3 = pad3 + reverb(pad3) * 0.6
-mus_total = (mus3 + pad3 * 0.12 * np.sqrt((mus3 ** 2).mean() / ((pad3 ** 2).mean() + 1e-12))) * g_mus[:, None]
+mus_total = (mus3 + (0 if a.limpa else 1) * pad3 * 0.12 * np.sqrt((mus3 ** 2).mean() / ((pad3 ** 2).mean() + 1e-12))) * g_mus[:, None]
 
 # ---------- SFX em 3D ----------
 pasta = pathlib.Path(a.sfx); cache = {}
@@ -125,7 +130,7 @@ for ev in json.load(open(a.eventos, encoding='utf8')):
     u = np.linspace(0, 1, n); az0, az1 = ev.get('az', [0, 0]); e0, e1 = ev.get('el', [0, 0])
     s3 = binaural(seg, az0 + (az1 - az0) * u, e0 + (e1 - e0) * u)
     seco[i:i + n] += s3; envio[i:i + n] += s3 * ev.get('rev', 0.4)
-sfx = seco + reverb(envio, ir(2.4, 0.7, 7000))
+sfx = seco + reverb(envio, ir(2.4, 0.7, 7000) if not a.limpa else ir(1.2, 0.35, 6000))
 sfx = sfx * (1 - 0.2 * np.clip(duck, 0, 1))[:, None]
 
 # ---------- niveis e master ----------
