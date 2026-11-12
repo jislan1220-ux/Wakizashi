@@ -143,7 +143,7 @@ foda = [t for t, w in J['kw'] if w.lower().startswith('foda')][0]
 ev('pv_shine', foda + .05, -12, rev=.3); ev('boom_cauda', foda, -12, rev=.3)
 
 # digitacao do prompt e do comentario: teclado de celular, sem metralhadora de teclas
-ev('pv_phone_typing', 12.70, -14, (10, 10), rev=.05, al='inicio')
+ev('pv_phone_typing', kw('falo') - .02, -14, (10, 10), rev=.05, al='inicio')
 ev('pv_phone_typing', kw('higgsfield”', 1), -14, (10, 10), rev=.05, al='inicio')
 ev('v16_tick', J['phr'][9], -14, al='inicio'); ev('pv_digital_camera_click', kw('higgsfield”', 1) + .69, -15, al='inicio')
 

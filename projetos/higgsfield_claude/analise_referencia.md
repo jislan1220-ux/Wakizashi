@@ -140,3 +140,12 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
   - Card: o2 de 0 a 3,2 s (correndo pela ponte em direção à câmera); na batida 20, corte para c2 a partir de 4,0 s (fugindo queimados).
 - Áudio: `build_audio.py '[[3.288,"c1",16],[11.18,"c2",24]]' v17` (o terceiro item de cada inserção é o número de batidas); tempos exportados com `anim_16x9_v17/times.js` para `times17.json`; SFX gerados por `sfx_v17.py` (o mesmo som da v16, com os tempos lidos da animação); depois `mix_3d.py ... sfx_v17.json --dur 41.2895 --fim 39.0395`.
 - Render: `FPS=60 node render_all.js anim.html fr 0 2478`.
+
+## Versão 16:9 v18 (dragão também com 24 batidas, 44,4 s)
+
+- Pedido do Victor: a cena da moça no dragão também fica mais longa, como a dos cavaleiros.
+- Dragão (24 batidas): em tela cheia, c1 de 0,2 s a 4,9 s (cara do dragão, rugido, a moça aparece montada); no card, o1 de 0 a 3,2 s (a moça voando, sorrindo) e, na batida 20, corte para o1 a partir de 3,4 s (o dragão saindo para o pôr do sol).
+- Correções: o flash do corte dentro do card estava 100% branco (desde a v15) e agora está igual aos outros cortes secos; a frase anterior não volta mais por um instante depois de cada cena Seedance.
+- Áudio: `build_audio.py '[[3.288,"c1",24],[11.18,"c2",24]]' v18`; `times.js` → `times18.json`; `sfx_v17.py times18.json salvo/sfx sfx_v18.json` (a digitação do prompt agora segue a palavra "falo"); `mix_3d.py ... --dur 44.4474 --fim 42.1974`.
+- Render: `FPS=60 node render_all.js anim.html fr 0 2667`.
+- Pendente: o Victor vai mandar a legenda dele; se o texto for diferente do que está no `FR` do `anim.html`, trocar e renderizar de novo.
