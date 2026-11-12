@@ -98,3 +98,15 @@ Regras da skill que entram: cortes no ritmo da música (as falas se encaixam nas
 - Câmera: pan esquerda/direita alternando por cena, rotação 3D, zoom que pulsa no grave e chicote com desfoque na entrada de cada cena.
 - Vitrine Seedance 2.0 Mini (Higgsfield, 720p, 5 s): dragão, cerco cômico à torre e duelo na escola de magia, entre 10,95 s e 20,25 s. A narração abre 9,3 s de silêncio ali. O primeiro prompt do dragão foi barrado pelo filtro de propriedade intelectual e refeito com visual original. Gasto: 4 jobs de cerca de 5 créditos.
 - Selos fixos: "COMENTA HIGGSFIELD PRO PASSO A PASSO" (ref. 4) e "patrocinado por Higgsfield". Final: Higgsfield + KATANA.
+
+## RETOMAR (estado salvo em 12/11/2026)
+
+Versão aprovada: **v12** (`anim_16x9_v12/anim.html`), no visual da `salvo/previews/referencia_aprovada_v07.jpg`. Estrutura: a narração com motion alterna com cinematics em card de vidro 3D (8 batidas cada, corte no meio, frase da narração no card), e as caixas usam o vidro estilo iPhone. São 1920x1080, 30 fps e 31,8 s.
+
+Para refazer numa sessão nova:
+1. Ambiente "Wakizashi (Higgsfield)" (rede do Higgsfield e do Hugging Face liberada).
+2. Montar a pasta de trabalho: `anim.html`, `peaks.js` e `fonts/` de `anim_16x9_v12/`. Os clipes vão em `clips/<id>/f_0001.jpg`... a 30 fps, extraídos de `salvo/clipes/` (c1 = dragão com a cara, cortado 80% para tirar a vinheta; c2 = cerco com fogo; o1 e o2 = clipes antigos): `ffmpeg -i X.mp4 -vf "fps=30,scale=1440:810:force_original_aspect_ratio=increase,crop=1440:810" -q:v 3 clips/c2/f_%04d.jpg`.
+3. Áudio: `build_audio.py '[[3.288,"c1"],[11.18,"c2"]]' v12`. Precisa da narração (`salvo/audio/`), da música FEN (que o Victor reenvia, entrando no segundo 29), dos SFX (`salvo/sfx_cc0/`, mais o pacote Pires Visuals que o Victor tem) e de `trilha_cinematica.py`. O script refaz `peaks.js`.
+4. Render: `node render_all.js anim.html fr 0 954`, com o Chrome usando swiftshader (4 processos), e depois o ffmpeg junta com `mix.wav`.
+
+Pendente: cena dos orcs atacando com metralhadoras (Seedance 2.0 Mini, 6 s, 720p, cerca de 6 créditos; o saldo estava em 0,5). Ela entra como terceira inserção, depois de "assinar o Claude", em [19.47,"c3"].
