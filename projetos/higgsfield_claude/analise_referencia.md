@@ -259,3 +259,8 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 ## v30 (12/11/2026): sem os impactos reprovados
 - O Victor reprovou o som do segundo 13 e o do final, e pediu para tirar também o igual ao do 13 em outro momento. Saíram o impacto "impact_4" da pasta tension (13,05 s e 20,08 s) e, no KATANA, o riser Sci-Fi & Cyberpunk #8 + o impacto de sub. O final ficou com o blade whoosh, o boom suave da v24 e os sinos.
 - `sfx_v30.py` (v29 menos esses eventos). Vídeo: imagem da v25 com `-c:v copy` → `entrega_v30/`.
+
+## v31 (12/11/2026): digitação de UI em cada palavra
+- O Victor curtiu a digitação da caixa de comentário no final (`ui-tuping-391160.mp3` do pacote "ui sfx": um toque curto de interface com cauda) e pediu esse som quando as letras aparecem.
+- `sfx_v31.py` (v30 +): lê os tempos das palavras (`WT` em `anim_16x9_v25/anim.html`, tempo da narração), converte para o tempo do vídeo (soma as inserções de 9,47 s depois de 3,288 e 11,18) e põe um toque por palavra, alternando 4 variações de tom (`ui_letra0-3`: 0,89x, 0,94x, 1x, 1,06x; cortado em 0,45 s com fade) e um pouco de esquerda/direita. Palavras de destaque (Higgsfield, Claude, foda, After, madrugada, melhor, grátis, passo, vídeo) 4 dB mais altas. Pula onde já tem som de interface (chips, pops, caixa de comentário) e junta palavras no mesmo instante. Na caixa do prompt, a digitação virou um toque por palavra também. 51 toques.
+- Vídeo: imagem da v25 com `-c:v copy` → `entrega_v31/`.
