@@ -57,6 +57,21 @@ Som do impacto: riser subindo até a batida, whoosh reverso um pouco antes, whoo
 - Trilha abaixa sozinha sob a voz e sobe na chamada final.
 - Master final em -14 LUFS, pico em -1 dB.
 
+### Efeitos (aprendido no vídeo Higgsfield + Claude, aprovado na versão final)
+
+- **Um efeito para cada coisa que acontece na tela, e só ali.** Antes de montar o `sfx.json`, faça o mapa visual do vídeo pronto: uma grade de quadros a 2 fps com o tempo escrito em cada um, mais os picos de diferença entre quadros (cortes, flashes, lasers). Ligue cada evento a um som:
+  - corte → whoosh atravessando de um lado para o outro;
+  - laser ou lâmina → blade whoosh;
+  - chip, menu, caixa de texto, botão → tique ou pop seco de interface;
+  - tela forte (clarão, tela de cor) → riser curto, de no máximo 1,5 s, chegando na batida;
+  - cena gerada (dragão, fogo, vento) → o som da própria cena.
+- **Texto cinético palavra por palavra leva um toque de digitação de interface em cada palavra.** Foi o detalhe que o criador mais gostou ("fica foda"). Use eventos `{"tecla": [tempos das palavras], "db": ...}` do `mixar.py`, com os tempos da transcrição. O toque fica baixinho, com um pouco de sala (reverb), em 3 ou 4 tons levemente diferentes e alternando de lado, um pouco mais alto nas palavras de destaque. Não toque duas vezes no mesmo instante nem em cima de outro som de interface.
+- **Peso vem do grave, não do volume.** Whooshes finos, só de ar, parecem baixos mesmo com +3 dB. Prefira whooshes com corpo abaixo de 120 Hz. Se a pessoa disser que o efeito está baixo, troque por sons mais graves antes de só subir o volume.
+- **Sem exagero de trailer.** Impactos pesados de trailer em telas de cor e riser de sci-fi com sub na logo foram reprovados. Na revelação da logo ficaram blade whoosh, um boom suave e sinos. Nunca ponha impacto sem algo forte na imagem, nem riser longo crescendo por baixo da voz na abertura.
+- **Cenas geradas bem presentes.** O momento forte da cena (no caso, a rosnada do dragão) fica uns 8 dB acima dos outros sons da cena, com um grave embaixo, para a pessoa sentir o impacto. O resto do som da cena fica com pouco eco.
+- **Trilha limpa.** Leve, quase sem reverb, girando devagar em volta da cabeça.
+- **Pacote de efeitos como referência.** Se a pessoa mandar um pacote, meça cada pasta (volume, grave abaixo de 120 Hz, brilho, largura estéreo), compare com os efeitos em uso e troque só os sons, mantendo a marcação de tempo aprovada. Mudança só de som não precisa de render novo: remonte o vídeo com o áudio novo usando `-c:v copy`.
+
 ## Entrega
 
 Sempre com arquivo editável: vídeo em ProRes, faixas separadas e FCPXML, além de uma versão com áudio junto. O fundo fica embutido, porque o vidro depende dele.
