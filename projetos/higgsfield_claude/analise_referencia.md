@@ -123,3 +123,11 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
   - Inserção 2 (11,18 s, "TRANSFORMA EM VÍDEO"): c2 em tela cheia; no card, o2 e depois c2.
 - Áudio: `build_audio.py '[[3.288,"c1"],[11.18,"c2"]]' v15 16`, rodado com `salvo/venv/bin/python`. O terceiro argumento é o número de batidas de cada inserção; o padrão continua 8, como na v14. Com 16, entram um crack, um impact e um whoosh no corte da batida 12.
 - Render: `FPS=60 node render_all.js anim.html fr 0 2288`, com `anim_16x9_v15/anim.html`. Os vídeos ficam em `entrega_v15/`, fora do git.
+
+## Versão 16:9 v16 (corte seco na batida, mais 3D, SFX refeitos)
+
+- Pedido do Victor: o motion está aprovado, mas precisa de mais 3D; quando a batida cair, o corte tem que ser seco ("pá"); e os SFX têm que ficar mais gostosos.
+- Cortes: cada troca de cena foi movida para a batida mais próxima (152 BPM, até 0,22 s de ajuste; a cena final não muda). A fusão de 0,5 s com blur saiu: agora o corte é seco, com soco de zoom (1,14 → 1 em 0,22 s), flash branco de 1 quadro (30%) e tranco de câmera. Os cinematics também entram sem blur.
+- 3D: a câmera gira mais (balanço de ±13° em Y e ±7° em X), entra em 3D mais forte, dá um tranco em profundidade e vira para lados alternados a cada batida. As letras da narração ganharam extrusão (volume) e inclinam junto com a câmera.
+- SFX (`sfx_v16.py`): saíram os sons sci-fi de interface (erro, bip, scan, data, glitch, metralhadora de teclas), e o reverb dos SFX foi reduzido. Sons novos sintetizados: swoosh de ar que cresce e para seco no corte, kick de sub, kick leve, pop nas palavras-chave, tick e swell reverso. Cada corte leva swoosh + kick + cauda + impact baixo. Nas inserções: riser → kick, braam e sub → brilho no título. A digitação agora é de celular. O final leva o riser metálico.
+- Passo a passo do áudio: rodar `anim_16x9_v16/times16.js` para exportar os tempos para `times16.json`, depois `sfx_v16.py times16.json salvo/sfx sfx_v16.json`, e por fim `mix_3d.py voz_v15.wav trilha_v15.wav salvo/sfx sfx_v16.json saida --dur 38.1316 --fim 35.8816`. A voz e a trilha são as mesmas da v15.
