@@ -109,8 +109,8 @@ Para refazer numa sessão nova:
 3. Áudio: `build_audio.py '[[3.288,"c1"],[11.18,"c2"]]' v12`. Precisa da narração (`salvo/audio/`), da música FEN (que o Victor reenvia, entrando no segundo 29), dos SFX (`salvo/sfx_cc0/`, mais o pacote Pires Visuals que o Victor tem) e de `trilha_cinematica.py`. O script refaz `peaks.js`.
 4. Render: `FPS=60 node render_all.js anim.html fr 0 1909` (60 fps, como no PDF da Wakizashi; o ffmpeg junta com -framerate 60), com o Chrome usando swiftshader (4 processos), e depois o ffmpeg junta com `mix.wav`.
 
-Pendente: cena dos orcs atacando com metralhadoras (Seedance 2.0 Mini, 6 s, 720p, cerca de 6 créditos; o saldo estava em 0,5). Ela entra como terceira inserção, depois de "assinar o Claude", em [19.47,"c3"].
+Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas inserções (c1 e c2).
 
 ### Status em 12/11/2026, antes do /clear
 - O render da v14 em 60 fps (1909 quadros) estava em 1693/1909. Quando terminar, `higgsfield_claude_16x9_v14_60fps.mp4` e `higgsfield_claude_16x9_v14_30fps.mp4` são copiados para `projetos/higgsfield_claude/entrega_v14/`. Essa pasta fica fora do git porque tem a música FEN; se o container for reiniciado, os vídeos se perdem e é preciso renderizar de novo pela seção RETOMAR.
-- Próximos passos: Victor testar 60 fps contra 30 fps no Instagram; cena dos orcs quando houver 6 créditos no Higgsfield.
+- Próximos passos: Victor testar 60 fps contra 30 fps no Instagram.
