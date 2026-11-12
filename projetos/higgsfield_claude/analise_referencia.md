@@ -213,3 +213,13 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 - Efeitos (`sfx_v24.py`, 45 eventos contra 146): um whoosh suave por corte, atravessando da esquerda para a direita; nas cenas Seedance, swell + boom suave; digitação, cliques e sinos baixinhos; sem bumbos, impactos empilhados, braams ou cliques nas palavras.
 - Cenas: vento, rugido, asas, risada, passagem, passos, fogo, gritos, brasas e corrida bem mais baixos e com pouco eco.
 - Mix: `--sfx_lufs -29.5 --mus_lufs -25.2 --limpa` → efeitos 6,3 dB abaixo da voz, música 0,7 dB abaixo da voz; sons das cenas de 6 a 8 dB abaixo da música.
+
+## v25: menos movimento e motion blur
+
+- O Victor achou o vídeo movimentado demais e travado em 24 fps; pediu menos movimento e motion blur.
+- Câmera mais calma (`anim_16x9_v25/anim.html`):
+  - Balanço de ±13°/±7° para ±6°/±3°, mais lento; tranco na batida de 3,5° para 1,2° e profundidade de 75 para 30.
+  - Entrada das cenas de 38°/50° para 24°/30°; tremida de 28 para 11 px; soco do corte de 1,14 para 1,06.
+  - Zoom na batida da câmera de 1,2% para 0,5%; cenas Seedance balançando bem menos.
+- Motion blur: a cada quadro, a câmera é calculada também meio quadro antes (1/48 s), e o desfoque é proporcional à velocidade (como um obturador de 180°). Limite de 2,2 px, sem desfoque no quadro do corte. Mediana de 0,2 px, 90% dos quadros com até 2 px.
+- O áudio é o da v24 (os cortes não mudaram de tempo). Render em 24 fps.
