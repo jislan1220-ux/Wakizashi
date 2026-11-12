@@ -187,3 +187,14 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
   - Dragão: vento, rugido (Dragon Roar com Monster Growl por baixo), asas gigantes e passagem.
   - Cavaleiros: passos na madeira, ponte rangendo, rugido na janela, baforada (burning air com fire torch), dois gritos, brasas e corrida acelerada 1,45x.
 - Mix: `mix_3d.py voz_v18.wav trilha_v18.wav salvo/sfx sfx_v21r.json saida --dur 44.4474 --fim 42.1974`; depois o vídeo de 24 fps é remontado com esse áudio.
+
+## v22: todos os efeitos com gravações reais
+
+- O Victor ainda achou os efeitos ruins e pediu efeitos "mais fodas", tanto no motion quanto nas cenas e nos personagens.
+- Varredura dos 1352 parquets (`fs_tools/scan2.py`, só CC0) atrás de whooshes de trailer, impactos de cinema, sub, risers, braams, prato reverso, cliques, digitação, brilhos, armadura e risada feminina. Os escolhidos foram baixados em `salvo/fs_dl2`.
+- `sfx_v22.py`: refaz o mapa inteiro só com gravações reais.
+  - Cortes: whoosh de trailer (EpicSoundEffects e outros) + kick grande + impacto.
+  - Cenas Seedance: riser + prato reverso → "Michael Bay Hit" + BWAAAM + sub; no card, whoosh grave.
+  - Palavras: cliques reais baixos. Digitação de iPhone. "3 dias grátis": swell + sinos. Final: prato reverso, Michael Bay Hit, BRAAM, sub e sinos.
+  - Personagens: armadura do cavaleiro andando e correndo e o tranco do susto; a moça rindo no dragão; continuam os sons reais da v21.
+- Mix: `mix_3d.py voz_v18.wav trilha_v18.wav salvo/sfx sfx_v22.json saida --dur 44.4474 --fim 42.1974`; o vídeo de 24 fps da v21 é remontado com esse áudio (`entrega_v22/`). Também sai `so_efeitos_v22.mp3`, só com os efeitos.
