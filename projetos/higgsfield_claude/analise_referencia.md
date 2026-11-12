@@ -1,0 +1,46 @@
+# Higgsfield + Claude: análise da referência e mapa de cenas
+
+Referência: vídeo enviado pelo Victor (snapinsta, 15,5 s, 720x1280, 30 fps, 466 quadros). Todos os quadros foram extraídos e vistos em folhas a cada 0,1 s.
+
+## Números da referência
+
+- Música a cerca de 152 BPM, batida a cada ~0,39 s.
+- Batidas fortes (onsets): 0,07 · 0,63 · 1,90 · 2,07 · 6,22 · 7,01 · 7,38 · 8,54 · 8,92 · 9,29 · 9,87 · 10,03 · 11,68 · 11,84 s.
+- A música para em ~13,3 s; o final (logo) fica em silêncio.
+- Quase nenhum corte seco: a câmera atravessa as cenas. Os cortes secos ficam nas batidas de 4,4 s, 6,5 s e 9,3 s.
+
+## Plano a plano
+
+| Tempo | O que acontece | Técnica |
+|---|---|---|
+| 0,0–1,2 | iPhone flutuando num vazio azul-escuro, gira 360° e mostra a tela | Câmera fixa, objeto girando em Y, luz azul de fundo |
+| 1,2–3,0 | Câmera mergulha na tela do perfil do Instagram; posts saltam da tela em camadas 3D | Dolly-in rápido, motion blur forte, inclinação de perspectiva |
+| 3,0–4,3 | Macro no avatar; a logo se solta da tela como holograma azul sobre anéis | Push-in no avatar, extrusão 3D com glow |
+| 4,4–6,4 | Corte para vazio azul: logo vira cubo de vidro girando, palavra orbitando | Corte seco na batida, cubo de vidro com refração |
+| 6,5–9,2 | Fundo branco/cinza com vinheta: tipografia cinética palavra por palavra | Palavras entram giradas em 3D, câmera panorâmica, destaque em caixa preta, cor só na palavra forte, máscara oval na batida de 8,2 |
+| 9,3–11,9 | Fundo preto: palavras em neon colorido (vermelho, amarelo, azul, branco), uma pingando | Glow forte, cada cor uma ideia, troca no ritmo |
+| 12,0–13,1 | Frase em vermelho; grades 3D descem na frente | Objeto 3D entrando na batida |
+| 13,1–15,5 | Logo branca entra por desfoque e fica parada com brilho até o fim | Blur-in, sem música |
+
+## Mapa para o vídeo do Victor (9:16, 1080x1920, 30 fps)
+
+Narração (texto digitado, vale mais que a transcrição):
+
+> Olha só o que eu consigo fazer com o Higgsfield e o Claude. Caralho, é muito foda isso! O Higgsfield tá dando três dias grátis pra você que assinar o Claude. Comenta aqui "Higgsfield" que eu te mando o passo a passo.
+
+| Fala | Cena (estrutura da referência) | Conteúdo do Victor |
+|---|---|---|
+| "Olha só o que eu consigo fazer" | iPhone gira no vazio e mergulha na tela | Perfil @diasl_uisvictor (Victor-Dias.mp4, grade com os posts reais: REGRAS, BRAZIL, PRIME, Sicoob...) |
+| "com o Higgsfield e o Claude" | Avatar se solta como holograma → cubo de vidro | Foto do Victor vira holograma; no cubo, as palavras "Higgsfield" e "Claude" orbitando |
+| "Caralho, é muito foda isso!" | Tipografia cinética em fundo claro | "muito" em caixa preta, "FODA" na cor forte, máscara oval na batida |
+| "O Higgsfield tá dando três dias grátis" | Neon em fundo preto | "3 DIAS" grande, "GRÁTIS" pingando, cada palavra numa cor |
+| "pra você que assinar o Claude" | Neon continua | "Claude" em destaque |
+| "Comenta aqui 'Higgsfield'" | No lugar das grades: caixa de comentário do Instagram descendo em 3D | "Higgsfield" sendo digitado no comentário |
+| "que eu te mando o passo a passo" | Assinatura com blur-in e brilho | Victor-Dias.mp4 · @diasl_uisvictor |
+
+Regras da skill que entram: cortes no ritmo da música (as falas se encaixam nas batidas fortes), SFX nas trocas (whoosh, riser antes da batida, impacto no corte), música baixa e abaixando sob a voz, crédito completo na tela pelo menos 0,45 s antes do fim. Nomes de marcas aparecem só como texto: nada de logo, arte ou trecho da referência.
+
+## Falta do Victor
+
+- A música e o segundo em que ela começa.
+- A dublagem final na voz dele (o guia gerado no Higgsfield serve de tempo).
