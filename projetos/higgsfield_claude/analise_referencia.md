@@ -198,3 +198,10 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
   - Palavras: cliques reais baixos. Digitação de iPhone. "3 dias grátis": swell + sinos. Final: prato reverso, Michael Bay Hit, BRAAM, sub e sinos.
   - Personagens: armadura do cavaleiro andando e correndo e o tranco do susto; a moça rindo no dragão; continuam os sons reais da v21.
 - Mix: `mix_3d.py voz_v18.wav trilha_v18.wav salvo/sfx sfx_v22.json saida --dur 44.4474 --fim 42.1974`; o vídeo de 24 fps da v21 é remontado com esse áudio (`entrega_v22/`). Também sai `so_efeitos_v22.mp3`, só com os efeitos.
+
+## v23: volta para a v21 (sons reais), com efeitos mais baixos e música mais alta
+
+- O Victor preferiu a v21 à v22 e pediu os efeitos um pouco mais baixos e a música um pouquinho mais alta.
+- `mix_3d.py` ganhou `--sfx_lufs` e `--mus_lufs` (padrões -22,5 e -27,5, os mesmos de antes). A v23 usa `--sfx_lufs -25.5 --mus_lufs -26`: efeitos 3 dB mais baixos e música 1,5 dB mais alta.
+- Em relação à voz: efeitos de +1,7 para −1,3 dB; música de −2,3 para −0,8 dB. Os eventos são os mesmos da v21 (`sfx_v21r.json`).
+- O vídeo é o de 24 fps da v21 remontado com esse áudio (`entrega_v23/`).

@@ -19,6 +19,8 @@ ap.add_argument('voz'); ap.add_argument('trilha'); ap.add_argument('sfx'); ap.ad
 ap.add_argument('--dur', type=float, default=25.5)
 ap.add_argument('--drop', type=float, default=0.88)
 ap.add_argument('--fim', type=float, default=23.25)
+ap.add_argument('--mus_lufs', type=float, default=-27.5)  # nivel da trilha antes do master
+ap.add_argument('--sfx_lufs', type=float, default=-22.5)  # nivel dos efeitos antes do master
 a = ap.parse_args()
 SR = 48000; N = int(a.dur * SR); OUT = pathlib.Path(a.saida); (OUT / 'stems').mkdir(parents=True, exist_ok=True)
 t = np.arange(N) / SR
@@ -128,8 +130,8 @@ sfx = sfx * (1 - 0.2 * np.clip(duck, 0, 1))[:, None]
 
 # ---------- niveis e master ----------
 voz = norm(voz, 'voz', -19.5)
-mus_total = norm(mus_total, 'trilha_3d', -27.5)   # 8 dB abaixo da voz (antes eram 12)
-sfx = norm(sfx, 'sfx_3d', -22.5)
+mus_total = norm(mus_total, 'trilha_3d', a.mus_lufs)   # 8 dB abaixo da voz (antes eram 12)
+sfx = norm(sfx, 'sfx_3d', a.sfx_lufs)
 mix = voz + mus_total + sfx
 pre = OUT / 'pre.wav'; wav(pre, mix)
 r = subprocess.run(['ffmpeg', '-hide_banner', '-i', str(pre), '-af', 'loudnorm=I=-14:TP=-1:LRA=11:print_format=json', '-f', 'null', '-'], capture_output=True, text=True)
