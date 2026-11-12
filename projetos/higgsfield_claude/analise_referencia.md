@@ -131,3 +131,12 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 - 3D: a câmera gira mais (balanço de ±13° em Y e ±7° em X), entra em 3D mais forte, dá um tranco em profundidade e vira para lados alternados a cada batida. As letras da narração ganharam extrusão (volume) e inclinam junto com a câmera.
 - SFX (`sfx_v16.py`): saíram os sons sci-fi de interface (erro, bip, scan, data, glitch, metralhadora de teclas), e o reverb dos SFX foi reduzido. Sons novos sintetizados: swoosh de ar que cresce e para seco no corte, kick de sub, kick leve, pop nas palavras-chave, tick e swell reverso. Cada corte leva swoosh + kick + cauda + impact baixo. Nas inserções: riser → kick, braam e sub → brilho no título. A digitação agora é de celular. O final leva o riser metálico.
 - Passo a passo do áudio: rodar `anim_16x9_v16/times16.js` para exportar os tempos para `times16.json`, depois `sfx_v16.py times16.json salvo/sfx sfx_v16.json`, e por fim `mix_3d.py voz_v15.wav trilha_v15.wav salvo/sfx sfx_v16.json saida --dur 38.1316 --fim 35.8816`. A voz e a trilha são as mesmas da v15.
+
+## Versão 16:9 v17 (cerco mais longo, 41,3 s)
+
+- Pedido do Victor: deixar mais tempo na cena dos cavaleiros, para mostrar eles sendo queimados e depois fugindo pela ponte. O texto continua sendo o da narração, sem mudança.
+- Cada inserção agora tem a própria duração em `INSB` (`anim.html`): o dragão continua com 16 batidas (8 em tela cheia e 8 no card); o cerco passou para 24 batidas (12 + 12, 9,5 s).
+  - Cerco em tela cheia: c2 de 1,0 s a 5,7 s numa tomada só (eles chegam na ponte, o dragão solta fogo, eles fogem com a bunda pegando fogo).
+  - Card: o2 de 0 a 3,2 s (correndo pela ponte em direção à câmera); na batida 20, corte para c2 a partir de 4,0 s (fugindo queimados).
+- Áudio: `build_audio.py '[[3.288,"c1",16],[11.18,"c2",24]]' v17` (o terceiro item de cada inserção é o número de batidas); tempos exportados com `anim_16x9_v17/times.js` para `times17.json`; SFX gerados por `sfx_v17.py` (o mesmo som da v16, com os tempos lidos da animação); depois `mix_3d.py ... sfx_v17.json --dur 41.2895 --fim 39.0395`.
+- Render: `FPS=60 node render_all.js anim.html fr 0 2478`.

@@ -1,12 +1,14 @@
 """Monta voz com silencios nas insercoes, trilha, picos e SFX para uma lista de insercoes."""
 import json, sys, subprocess, random
 S='/tmp/claude-0/-home-user-Wakizashi/a18d254c-fe44-5423-a2e6-562d716691fb/scratchpad'; P='/home/user/Wakizashi/projetos/higgsfield_claude'
-INSL=json.loads(sys.argv[1]); tag=sys.argv[2]; BT=int(sys.argv[3]) if len(sys.argv)>3 else 8; CD=BT*60/152; N=len(INSL); DUR=25.5+N*CD; FIM=23.25+N*CD
-def toReal(m): return m+sum(CD for a,_ in INSL if m>=a)
+INSL=json.loads(sys.argv[1]); tag=sys.argv[2]; BT=int(sys.argv[3]) if len(sys.argv)>3 else 8
+# cada insercao pode ter sua duracao em batidas: [tempo, clipe, batidas]
+INSL=[x if len(x)>2 else x+[BT] for x in INSL]; CDS=[x[2]*60/152 for x in INSL]; N=len(INSL); DUR=25.5+sum(CDS); FIM=23.25+sum(CDS)
+def toReal(m): return m+sum(d for (a,*_),d in zip(INSL,CDS) if m>=a)
 # voz
 parts=[];last=0;fc='';
-for i,(a,_) in enumerate(INSL):
-    fc+=f'[0]atrim={last}:{a},asetpts=PTS-STARTPTS[v{i}];aevalsrc=0|0:d={CD}:s=48000[z{i}];'; parts+= [f'[v{i}]',f'[z{i}]']; last=a
+for i,(a,*_) in enumerate(INSL):
+    fc+=f'[0]atrim={last}:{a},asetpts=PTS-STARTPTS[v{i}];aevalsrc=0|0:d={CDS[i]}:s=48000[z{i}];'; parts+= [f'[v{i}]',f'[z{i}]']; last=a
 fc+=f'[0]atrim={last},asetpts=PTS-STARTPTS[vl];'; parts.append('[vl]')
 fc+=''.join(parts)+f'concat=n={len(parts)}:v=0:a=1'
 subprocess.run(['ffmpeg','-v','error','-y','-i',f'{S}/entrega_v02/stems/voz.wav','-filter_complex',fc,'-c:a','pcm_f32le',f'{S}/aud/voz_{tag}.wav'],check=True)
@@ -16,13 +18,13 @@ E=json.load(open(f'{P}/sfx_16x9.json'))
 for e in E: e['t']=round(toReal(e['t']),3)
 def ev(n,t,db,az=(0,0),el=(0,0),rev=.25,al='pico'): E.append({"nome":n,"t":round(t,3),"db":db,"az":list(az),"el":list(el),"rev":rev,"alinhar":al})
 r=random.Random(5)
-for i,(a,_) in enumerate(INSL):
-    ra=toReal(a)-CD; side=-1 if i%2==0 else 1
+for i,(a,_,bt) in enumerate(INSL):
+    CD=CDS[i]; ra=toReal(a)-CD; side=-1 if i%2==0 else 1
     ev("kt_long",ra-.05,-7,(side*120,0),(.4,0)); ev("pv_impact",ra+.02,-4,rev=.45); ev("kt_boom2",ra+.02,-7)
     ev("kt_long2",ra+CD/2-.06,-7,(-side*90,side*90)); ev("kt_crack",ra+CD/2-.03,-6,rev=.4); ev("pv_impact",ra+CD/2,-4,rev=.5); ev("kt_flash",ra+CD/2,-8)
     t=ra+.25
     while t<ra+1.1: ev(f"kt_key{r.randint(1,5)}",t,-14+r.uniform(-2,1),(10,10),rev=.05,al='inicio'); t+=.05+r.random()*.05
-    if BT>8: ev("kt_crack",ra+CD*.75-.03,-8,rev=.35); ev("pv_impact",ra+CD*.75,-7,rev=.45); ev("kt_wh2",ra+CD*.75-.1,-11,(side*90,0))
+    if bt>8: ev("kt_crack",ra+CD*.75-.03,-8,rev=.35); ev("pv_impact",ra+CD*.75,-7,rev=.45); ev("kt_wh2",ra+CD*.75-.1,-11,(side*90,0))
     ev("kt_wh2",ra+CD-.12,-9,(0,-side*90))
 json.dump(E,open(f'{P}/sfx_{tag}.json','w'),indent=0)
 subprocess.run([f'{S}/venv/bin/python','-I',f'{P}/mix_3d.py',f'{S}/aud/voz_{tag}.wav',f'{S}/aud/trilha_{tag}.wav',f'{S}/sfx',f'{P}/sfx_{tag}.json',f'{S}/entrega_{tag}','--dur',str(DUR),'--fim',str(FIM)],check=True,capture_output=True)
