@@ -264,3 +264,9 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 - O Victor curtiu a digitação da caixa de comentário no final (`ui-tuping-391160.mp3` do pacote "ui sfx": um toque curto de interface com cauda) e pediu esse som quando as letras aparecem.
 - `sfx_v31.py` (v30 +): lê os tempos das palavras (`WT` em `anim_16x9_v25/anim.html`, tempo da narração), converte para o tempo do vídeo (soma as inserções de 9,47 s depois de 3,288 e 11,18) e põe um toque por palavra, alternando 4 variações de tom (`ui_letra0-3`: 0,89x, 0,94x, 1x, 1,06x; cortado em 0,45 s com fade) e um pouco de esquerda/direita. Palavras de destaque (Higgsfield, Claude, foda, After, madrugada, melhor, grátis, passo, vídeo) 4 dB mais altas. Pula onde já tem som de interface (chips, pops, caixa de comentário) e junta palavras no mesmo instante. Na caixa do prompt, a digitação virou um toque por palavra também. 51 toques.
 - Vídeo: imagem da v25 com `-c:v copy` → `entrega_v31/`.
+
+## v32 (12/11/2026): digitação mais baixa e cinematográfica, cenas Seedance mais altas
+- Pedido: digitação um pouco mais baixa e "mais cinematic", cenas do Seedance um pouco mais altas.
+- `sfx_v32.py` (v31 +): toques de letra 3 dB mais baixos, com mais sala (reverb 0,22 em vez de 0,04), um pouco mais abertos (±25°) e levemente para cima; todos os sons das cenas Seedance (`evc`, inclusive a rosnada) +4 dB.
+- Mix: `--sfx_lufs -24.3` (em vez de -26.5) para os outros efeitos ficarem no mesmo nível da v31 (conferido no trecho do KATANA). Resultado: efeitos da cena 1 e da cena 2 +3,5 dB; mix na cena 1 +0,9 dB.
+- Vídeo: imagem da v25 com `-c:v copy` → `entrega_v32/`.
