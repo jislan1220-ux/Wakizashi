@@ -160,3 +160,13 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 ## Versão 16:9 v20
 
 - O Victor aprovou a v19 ("ficou perfeito"). Único ajuste: a fala "Eu só falo o que eu quero" aparece só dentro da caixa de vidro, e a legenda grande em cima dela saiu (`caption()` pula a frase das 6,18 s).
+
+## Versão 16:9 v21 (visual da v18 com a narração nas cenas Seedance)
+
+- O Victor mandou a prévia da v18 e disse que quer aquele visual (título por cima, prompt digitado, título no card), só que com o texto da narração dele no lugar.
+- `CLIPS` agora tem [texto digitado/passando, título em tela cheia, título do card, segmentos]:
+  - Dragão: "Olha só o que eu consigo fazer com o Higgsfield e o Claude." (título em tela cheia em 2 linhas; no card, "COM O HIGGSFIELD E O CLAUDE.").
+  - Cavaleiros: "Eu só falo o que eu quero, o Claude monta a ideia e o Higgsfield transforma em vídeo." (título "O CLAUDE MONTA A IDEIA E O HIGGSFIELD TRANSFORMA EM VÍDEO."; no card, "TRANSFORMA EM VÍDEO.").
+- Em tela cheia, a pílula digita a frase em 2,6 s; se a frase não cabe, mostra só o final. No card, a frase passa como letreiro (260 px/s).
+- Continuam da v20 a fala só dentro da caixa de vidro e o flash suave. O áudio é o mesmo da v18.
+- Os prompts originais do Seedance (do histórico do Higgsfield) e a legenda do post, com a collab, estão em `entrega_v20/legenda_post_instagram.txt` (fora do git).
