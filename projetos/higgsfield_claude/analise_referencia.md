@@ -83,3 +83,10 @@ Regras da skill que entram: cortes no ritmo da música (as falas se encaixam nas
 - `anim/anim.html`: página vertical de 1080x1920 com `__setTime(t)`, no mesmo esquema do motor da skill. Usa os prints do perfil do Victor, que ficam em `assets/` fora do repositório: `tela.jpg` (perfil com a grade), `avatar.png` e `post1..9.jpg`.
 - Cenas: iPhone gira (0–1,25 s) → mergulho com os posts saltando (1,25–2,6) → avatar vira holograma (2,6–3,4) → "Caralho, é muito FODA isso!" em fundo claro (3,4–6,0) → balão de vidro digitando o pedido (6,0–8,4) → cubo de vidro Claude/Higgsfield/vídeo com palavras orbitando (8,4–11,3) → neon "sem After" riscado, "madrugada" e 03:47 (11,3–14,2) → "e o melhor: 3 DIAS GRÁTIS" com tremida (14,2–19,6) → caixa de comentário cai e digita "Higgsfield" (19,6–23,25) → assinatura Victor-Dias.mp4 (23,25–25,5).
 - O preview junta os 765 quadros com o áudio v04. É só esboço: sem o fundo de luz líquida e sem o corte de lâmina, que entram na versão final.
+
+## Versão 16:9 v01 (nova referência: Higgsfield Katana + Claude Motion)
+
+- Referência nova: vídeo de 56 s em que um motion 16:9 roda num monitor. Fundo preto, verde-limão (#c6ff2e) e rosa, tipo pesado em caixa alta, header pequeno com chip verde na palavra-chave, nós de interface ligados por linha com um ponto viajando, caixa de prompt com palavras marcadas em verde, pilha de ferramentas rosa com contador de horas, fundo verde cheio com letras esticando, corte de katana com faíscas e assinatura final cortada.
+- `anim_16x9/anim.html`: 1920x1080, 30 fps, 11 cenas sincronizadas palavra a palavra. Os tempos das palavras vieram da transcrição com faster-whisper no sandbox do Higgsfield.
+- SFX: biblioteca CC0 do Katana (Kenney e outros, licenças no pacote), mais Impact, Metallic Riser e Shine do Pires Visuals e as camadas sintéticas de cinema. 100 eventos em `sfx_16x9.json`, gerados por `sfx_16x9.py`, espacializados em 3D por `mix_3d.py`.
+- Fontes: Inter Display Black, JetBrains Mono e League Gothic (OFL, do pacote do Katana).
