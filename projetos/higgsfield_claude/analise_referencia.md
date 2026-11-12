@@ -114,3 +114,12 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 ### Status em 12/11/2026, antes do /clear
 - O render da v14 em 60 fps (1909 quadros) estava em 1693/1909. Quando terminar, `higgsfield_claude_16x9_v14_60fps.mp4` e `higgsfield_claude_16x9_v14_30fps.mp4` são copiados para `projetos/higgsfield_claude/entrega_v14/`. Essa pasta fica fora do git porque tem a música FEN; se o container for reiniciado, os vídeos se perdem e é preciso renderizar de novo pela seção RETOMAR.
 - Próximos passos: Victor testar 60 fps contra 30 fps no Instagram.
+
+## Versão 16:9 v15 (cenas Seedance mais longas, 38,1 s)
+
+- Pedido do Victor: depois de cada frase da narração, a música segura e as cenas geradas no Seedance ficam mais tempo na tela. Depois a narração volta, e o final é o mesmo.
+- Cada inserção agora tem 16 batidas (6,3 s, antes eram 3,2 s): 8 batidas de tomada contínua em tela cheia com o título, mais 8 no card de vidro, com corte entre dois clipes na batida 12.
+  - Inserção 1 (3,288 s, "O QUE EU CONSIGO FAZER"): c1 em tela cheia; no card, o1 e depois c1.
+  - Inserção 2 (11,18 s, "TRANSFORMA EM VÍDEO"): c2 em tela cheia; no card, o2 e depois c2.
+- Áudio: `build_audio.py '[[3.288,"c1"],[11.18,"c2"]]' v15 16`, rodado com `salvo/venv/bin/python`. O terceiro argumento é o número de batidas de cada inserção; o padrão continua 8, como na v14. Com 16, entram um crack, um impact e um whoosh no corte da batida 12.
+- Render: `FPS=60 node render_all.js anim.html fr 0 2288`, com `anim_16x9_v15/anim.html`. Os vídeos ficam em `entrega_v15/`, fora do git.

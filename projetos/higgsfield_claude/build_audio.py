@@ -1,7 +1,7 @@
 """Monta voz com silencios nas insercoes, trilha, picos e SFX para uma lista de insercoes."""
 import json, sys, subprocess, random
 S='/tmp/claude-0/-home-user-Wakizashi/a18d254c-fe44-5423-a2e6-562d716691fb/scratchpad'; P='/home/user/Wakizashi/projetos/higgsfield_claude'
-INSL=json.loads(sys.argv[1]); tag=sys.argv[2]; CD=8*60/152; N=len(INSL); DUR=25.5+N*CD; FIM=23.25+N*CD
+INSL=json.loads(sys.argv[1]); tag=sys.argv[2]; BT=int(sys.argv[3]) if len(sys.argv)>3 else 8; CD=BT*60/152; N=len(INSL); DUR=25.5+N*CD; FIM=23.25+N*CD
 def toReal(m): return m+sum(CD for a,_ in INSL if m>=a)
 # voz
 parts=[];last=0;fc='';
@@ -22,6 +22,7 @@ for i,(a,_) in enumerate(INSL):
     ev("kt_long2",ra+CD/2-.06,-7,(-side*90,side*90)); ev("kt_crack",ra+CD/2-.03,-6,rev=.4); ev("pv_impact",ra+CD/2,-4,rev=.5); ev("kt_flash",ra+CD/2,-8)
     t=ra+.25
     while t<ra+1.1: ev(f"kt_key{r.randint(1,5)}",t,-14+r.uniform(-2,1),(10,10),rev=.05,al='inicio'); t+=.05+r.random()*.05
+    if BT>8: ev("kt_crack",ra+CD*.75-.03,-8,rev=.35); ev("pv_impact",ra+CD*.75,-7,rev=.45); ev("kt_wh2",ra+CD*.75-.1,-11,(side*90,0))
     ev("kt_wh2",ra+CD-.12,-9,(0,-side*90))
 json.dump(E,open(f'{P}/sfx_{tag}.json','w'),indent=0)
 subprocess.run([f'{S}/venv/bin/python','-I',f'{P}/mix_3d.py',f'{S}/aud/voz_{tag}.wav',f'{S}/aud/trilha_{tag}.wav',f'{S}/sfx',f'{P}/sfx_{tag}.json',f'{S}/entrega_{tag}','--dur',str(DUR),'--fim',str(FIM)],check=True,capture_output=True)
