@@ -223,3 +223,13 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
   - Zoom na batida da câmera de 1,2% para 0,5%; cenas Seedance balançando bem menos.
 - Motion blur: a cada quadro, a câmera é calculada também meio quadro antes (1/48 s), e o desfoque é proporcional à velocidade (como um obturador de 180°). Limite de 2,2 px, sem desfoque no quadro do corte. Mediana de 0,2 px, 90% dos quadros com até 2 px.
 - O áudio é o da v24 (os cortes não mudaram de tempo). Render em 24 fps.
+
+## RETOMAR (estado salvo antes do /clear, 12/11/2026)
+
+**Versão atual: v25** (imagem `anim_16x9_v25/anim.html` + som da v24), 24 fps, 1920x1080, 44,4 s.
+- Imagem: visual da v18/v21, com o texto da narração nas cenas Seedance (título, digitação e letreiro), as duas cenas Seedance com 24 batidas, a fala do prompt só dentro da caixa de vidro, cortes secos na batida, câmera calma e motion blur.
+- Som: v24, limpo (`sfx_v24.py` + `mix_3d.py --limpa --sfx_lufs -29.5 --mus_lufs -25.2`, música `trilha_v24.wav` feita com `LIMPA=1 trilha_cinematica.py`). O mix pronto está em `salvo/entrega_v24/mix.wav` (pasta de trabalho, fora do git).
+- O render da v25 estava rodando: quadros em `k16/fr25` (pasta de trabalho), saída em `projetos/higgsfield_claude/entrega_v25/higgsfield_claude_16x9_v25_24fps.mp4`, mais a folha `sheet25.jpg`. Se tiver parado, rode de novo (os quadros que já existem são pulados): `cd k16 && FPS=24 node render_all.js anim.html fr25 0 1067` (em 4 processos, por faixas), depois `ffmpeg -framerate 24 -i fr25/f_%05d.jpg -i entrega_v24/mix.wav -c:v libx264 -crf 16 -pix_fmt yuv420p -c:a aac -b:a 320k -shortest`.
+- Próximo passo: conferir a folha de quadros da v25 e mandar o vídeo para o Victor.
+- Entregas que já foram para o Victor: v23 e v24 em 24 fps, os 4 clipes Seedance, `legenda_v17.srt` e a legenda do post com a collab e os prompts (`entrega_v20/legenda_post_instagram.txt`).
+- Preferências do Victor: o texto na tela é sempre o da narração dele; som leve, limpo e 3D; sons das cenas baixos; menos movimento; 24 fps.
