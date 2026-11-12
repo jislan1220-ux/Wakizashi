@@ -1,0 +1,113 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Higgsfield Claude esboco</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Inter,sans-serif}
+#st{position:absolute;inset:0;overflow:hidden}
+.c{position:absolute;left:50%;top:50%;transform-style:preserve-3d}
+.w{font-family:'Inter Display',Inter;font-weight:800;letter-spacing:-.03em;white-space:nowrap;position:absolute;left:50%;top:50%}
+.grain{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:3px 3px;pointer-events:none}
+</style></head><body><div id="st"></div>
+<script>
+const DUR=25.5;
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const P=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3), eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c=1.9;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const spring=x=>x<=0?0:1-Math.exp(-7*x)*Math.cos(11*x);
+const A='assets/';
+// palavra que entra rodando em 3D
+function word(txt,t,t0,{x=0,y=0,size=150,color='#1b1b1f',box=false,rot=-14,glow=null,drip=false,weight=800}={}){
+  const p=P(t,t0,t0+.28); if(p<=0)return '';
+  const s=spring(p*1.6), r=(1-eo(p))*rot*3, blur=(1-p)*14;
+  const bx=box?`background:#0c0c10;color:#f2f2f2;padding:0 .18em;`:`color:${color};`;
+  const gl=glow?`text-shadow:0 0 18px ${glow},0 0 50px ${glow};`:'';
+  const dr=drip?`background:linear-gradient(${color} 70%,transparent);-webkit-background-clip:text;color:transparent;`:'';
+  return `<div class="w" style="font-size:${size}px;font-weight:${weight};${bx}${gl}${dr}transform:translate(-50%,-50%) translate(${x}px,${y+(1-s)*60}px) perspective(900px) rotateY(${r}deg) rotateZ(${(1-s)*rot}deg) scale(${.6+.4*s});filter:blur(${blur}px);opacity:${cl(p*3)}">${txt}</div>`;
+}
+function phone(rx,ry,rz,sc,screenOn=1,extra=''){
+  const W=430,H=930;
+  return `<div class="c" style="transform:translate(-50%,-50%) perspective(1600px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${sc});width:${W}px;height:${H}px">
+   <div style="position:absolute;inset:0;border-radius:64px;background:linear-gradient(135deg,#9aa3ad,#e9edf1 40%,#6b737c);transform:translateZ(-14px)"></div>
+   <div style="position:absolute;inset:0;border-radius:64px;background:#08090b;backface-visibility:hidden;box-shadow:0 0 0 6px #b9c0c8,0 30px 120px rgba(40,90,255,.45);overflow:hidden">
+     <div style="position:absolute;inset:14px;border-radius:52px;overflow:hidden;background:url(${A}tela.jpg) top/cover;opacity:${screenOn}"></div>
+     <div style="position:absolute;left:50%;top:26px;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#000"></div>${extra}
+   </div>
+   <div style="position:absolute;inset:0;border-radius:64px;transform:rotateY(180deg) translateZ(14px);backface-visibility:hidden;background:linear-gradient(160deg,#dfe3e7,#aab1b8);">
+     <div style="position:absolute;left:40px;top:40px;width:170px;height:170px;border-radius:44px;background:#c9ced3;box-shadow:inset 0 0 0 3px #b0b6bc"></div></div>
+  </div>`;
+}
+function voidBlue(t,k=1){
+  return `<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% ${45+5*Math.sin(t)}%,rgba(30,70,255,${.55*k}),rgba(5,10,60,${.6*k}) 40%,#000 75%)"></div>`;
+}
+const SC=[
+ // 1. iPhone gira no vazio azul
+ {s:0,e:1.25,f:t=>{const p=P(t,0,1.25);
+   return voidBlue(t)+phone(10-6*p,-200+200*eio(p),-18+18*eo(p),(.55+.25*eo(p))*1.35,cl(p*2-.4));}},
+ // 2. mergulho na tela: posts saltam em 3D
+ {s:1.25,e:2.6,f:t=>{const p=P(t,1.25,2.6),z=eio(p);
+   let posts='';[[1,-260,-120],[5,170,60],[3,-60,260],[8,260,-260],[2,-280,330]].forEach(([n,x,y],i)=>{
+     const q=P(t,1.45+i*.08,1.9+i*.08),s=back(q);
+     posts+=`<div style="position:absolute;left:50%;top:50%;width:300px;height:400px;margin:-200px 0 0 -150px;border-radius:18px;background:url(${A}post${n}.jpg) center/cover;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 2px rgba(255,255,255,.15);transform:perspective(1200px) translate3d(${x*s}px,${y*s}px,${q*420}px) rotateY(${(i%2?-1:1)*(1-q)*40}deg);opacity:${cl(q*3)}"></div>`;});
+   return voidBlue(t,.8)+phone(38*z,-12*z,-6*z,.8+1.6*z,1)+posts+`<div style="position:absolute;inset:0;backdrop-filter:blur(${(1-Math.abs(p-.5)*2)*3}px)"></div>`;}},
+ // 3. avatar sai da tela como holograma
+ {s:2.6,e:3.4,f:t=>{const p=P(t,2.6,3.4),u=back(P(t,2.65,3.15));
+   let rings='';for(let i=0;i<4;i++)rings+=`<div style="position:absolute;left:50%;top:50%;width:${460+i*90}px;height:${460+i*90}px;margin:-${230+i*45}px;border-radius:50%;border:${4-i*.6}px solid rgba(90,150,255,${.8-i*.17});box-shadow:0 0 30px rgba(60,120,255,.6);transform:perspective(900px) rotateX(72deg) translateZ(${-120+i*14}px)"></div>`;
+   return voidBlue(t,.7)+`<div style="position:absolute;inset:0;background:url(${A}tela.jpg) 0 -240px/1080px auto;opacity:.25;transform:perspective(1000px) rotateX(55deg) translateY(300px) scale(1.6);filter:blur(2px)"></div>`+rings+
+   `<div style="position:absolute;left:50%;top:50%;width:420px;height:420px;margin:-210px;border-radius:50%;background:url(${A}avatar.png) center/cover;box-shadow:0 0 0 8px rgba(120,170,255,.9),0 0 90px rgba(60,120,255,.9);filter:grayscale(.5) contrast(1.15) brightness(1.05);transform:perspective(900px) translateY(${(1-u)*260}px) rotateX(${(1-u)*70}deg) scale(${.5+.5*u})"></div>`+
+   `<div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(80,140,255,.07) 0 2px,transparent 2px 6px)"></div>`;}},
+ // 4. "Caralho, é muito foda isso!" tipografia em fundo claro
+ {s:3.4,e:6.0,f:t=>{const cam=eio(P(t,3.4,6.0));
+   return `<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#f4f5f6,#c9ccd0 55%,#5c6066 100%)"></div><div style="position:absolute;inset:0;transform:translate(${-80*cam}px,${-160*cam}px) rotate(${-3+4*cam}deg)">`+
+   word('Caralho,',t,3.42,{y:-380,size:190,box:true,rot:-18})+word('é muito',t,4.05,{x:-60,y:-150,size:150,color:'#2a2a30'})+
+   word('FODA',t,4.45,{y:140,size:330,color:'#1fd38a',glow:'rgba(31,211,138,.5)',rot:12,weight:900})+word('isso!',t,5.0,{x:120,y:400,size:150,color:'#2a2a30',rot:-10})+'</div>';}},
+ // 5. "Eu só falo o que eu quero..." balão de vidro
+ {s:6.0,e:8.4,f:t=>{const p=P(t,6.05,6.5),s=back(p);const n=Math.floor(cl((t-6.4)/1.6)*31);
+   const txt='cria um vídeo foda pro meu insta'.slice(0,n);
+   return voidBlue(t,.9)+`<div style="position:absolute;left:50%;top:44%;width:820px;padding:56px 60px;margin-left:-410px;border-radius:44px;background:rgba(255,255,255,.08);backdrop-filter:blur(26px);border:1.5px solid rgba(255,255,255,.22);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.5),0 40px 120px rgba(0,0,0,.5);transform:perspective(1100px) rotateX(${(1-s)*-50}deg) translateY(${(1-s)*200}px);opacity:${cl(p*3)}">
+     <div style="font:600 34px Inter;color:rgba(255,255,255,.55);margin-bottom:22px">você → Claude</div>
+     <div style="font:700 64px 'Inter Display';color:#fff;line-height:1.15;min-height:150px">${txt}<span style="opacity:${Math.floor(t*3)%2}">|</span></div></div>`+
+   word('eu só falo',t,6.02,{y:-600,size:120,color:'#fff',rot:-12})+word('o que eu quero',t,6.5,{y:-470,size:96,color:'#9fb4ff',rot:10});}},
+ // 6. cubo de vidro: Claude -> Higgsfield -> vídeo
+ {s:8.4,e:11.3,f:t=>{const p=P(t,8.4,11.3),ry=-30+eio(p)*300,rx=-18+8*Math.sin(t*2);
+   const face=(tr,html,bg)=>`<div style="position:absolute;inset:0;transform:${tr};background:${bg};border:2px solid rgba(160,200,255,.6);box-shadow:inset 0 0 60px rgba(90,150,255,.5);display:flex;align-items:center;justify-content:center;font:900 64px 'Inter Display';color:#fff;backface-visibility:hidden">${html}</div>`;
+   const g='rgba(40,90,255,.28)';
+   const cube=`<div class="c" style="width:420px;height:420px;transform:translate(-50%,-50%) perspective(1500px) rotateX(${rx}deg) rotateY(${ry}deg)">
+     ${face('translateZ(210px)','Claude',g)}${face('rotateY(90deg) translateZ(210px)','Higgsfield',g)}${face('rotateY(180deg) translateZ(210px)','▶ vídeo',g)}${face('rotateY(-90deg) translateZ(210px)','@diasl',g)}
+     ${face('rotateX(90deg) translateZ(210px)','',g)}${face('rotateX(-90deg) translateZ(210px)','',g)}</div>`;
+   let orb='';['Claude','monta','a ideia','Higgsfield','transforma','em vídeo'].forEach((w,i)=>{const a=t*1.4+i*1.05,r=470;
+     orb+=`<div class="w" style="font-size:54px;color:rgba(200,220,255,${.35+.4*(Math.sin(a)>0)});transform:translate(-50%,-50%) translate(${Math.cos(a)*r}px,${Math.sin(a)*130}px) scale(${.8+.3*Math.sin(a)})">${w}</div>`;});
+   return voidBlue(t)+orb+cube;}},
+ // 7. "Sem After, sem madrugada editando" neon no preto
+ {s:11.3,e:14.2,f:t=>{const strike=eo(P(t,12.0,12.3));
+   return `<div style="position:absolute;inset:0;background:#030304"></div>`+
+   word('sem',t,11.35,{x:-330,y:-420,size:130,color:'#ff3b3b',glow:'rgba(255,40,40,.7)'})+word('<span style="position:relative">After<i style="position:absolute;left:-4%;top:52%;height:.09em;width:'+(strike*108)+'%;background:#fff;box-shadow:0 0 20px #fff"></i></span>',t,11.6,{x:140,y:-420,size:200,color:'#ff3b3b',glow:'rgba(255,40,40,.7)',rot:14})+
+   word('sem passar a',t,12.4,{y:-60,size:110,color:'#ffd23b',glow:'rgba(255,200,40,.6)'})+word('madrugada',t,12.75,{y:110,size:190,color:'#3ba4ff',glow:'rgba(40,150,255,.7)',rot:-12})+
+   word('editando',t,13.3,{y:300,size:130,color:'#e8e8e8',glow:'rgba(255,255,255,.4)'})+word('03:47',t,12.9,{x:300,y:560,size:90,color:'rgba(59,164,255,.6)',weight:600});}},
+ // 8. "E o melhor:" + "3 DIAS GRÁTIS"
+ {s:14.2,e:19.6,f:t=>{const shake=t>15.1&&t<15.35?(Math.sin(t*90)*14*(15.35-t)/.25):0;
+   return `<div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,200,40,${t>15.1?.12:0}),#020203 60%)"></div><div style="position:absolute;inset:0;transform:translate(${shake}px,${shake*.6}px)">`+
+   word('e o melhor:',t,14.22,{y:-640,size:100,color:'#e8e8e8',glow:'rgba(255,255,255,.3)'})+word('Higgsfield',t,14.6,{y:-470,size:120,color:'#9fb4ff',glow:'rgba(100,140,255,.6)'})+
+   word('3 DIAS',t,15.1,{y:-170,size:330,color:'#ffd23b',glow:'rgba(255,200,40,.75)',rot:-10,weight:900})+word('GRÁTIS',t,15.55,{y:130,size:250,color:'#ff3b3b',glow:'rgba(255,40,40,.75)',drip:true,rot:12,weight:900})+
+   word('pra você que',t,17.0,{y:420,size:90,color:'#e8e8e8'})+word('assinar o Claude',t,17.6,{y:540,size:110,color:'#1fd38a',glow:'rgba(31,211,138,.6)'})+'</div>';}},
+ // 9. caixa de comentário cai de cima
+ {s:19.6,e:23.25,f:t=>{const p=P(t,19.6,20.2),s=spring(p*1.4);const n=Math.floor(cl((t-20.3)/1.2)*10);
+   const like=t>22.2?eo(P(t,22.2,22.5)):0;
+   return voidBlue(t,.6)+word('comenta aqui',t,19.65,{y:-560,size:120,color:'#fff',rot:-10})+
+   `<div style="position:absolute;left:50%;top:50%;width:900px;margin:-150px 0 0 -450px;padding:40px 44px;border-radius:40px;background:rgba(20,20,26,.72);backdrop-filter:blur(24px);border:1.5px solid rgba(255,255,255,.18);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.4),0 50px 140px rgba(0,0,0,.6);transform:perspective(1200px) translateY(${(1-s)*-900}px) rotateX(${(1-s)*60}deg)">
+     <div style="display:flex;align-items:center;gap:26px"><div style="width:96px;height:96px;border-radius:50%;background:url(${A}avatar.png) center/cover;flex:none"></div>
+     <div style="flex:1;font:500 56px Inter;color:#fff;border-bottom:2px solid rgba(255,255,255,.2);padding-bottom:10px">${'Higgsfield'.slice(0,n)}<span style="opacity:${Math.floor(t*3)%2}">|</span></div>
+     <div style="font:700 44px Inter;color:#4a8dff">Publicar</div></div></div>`+
+   word('que eu te mando',t,21.4,{y:330,size:100,color:'#e8e8e8'})+word('o passo a passo',t,21.95,{y:460,size:120,color:'#1fd38a',glow:'rgba(31,211,138,.6)'})+
+   `<div style="position:absolute;left:880px;top:1010px;font-size:110px;transform:scale(${back(like)});opacity:${like}">❤️</div>`;}},
+ // 10. assinatura
+ {s:23.25,e:DUR,f:t=>{const p=P(t,23.3,24.0),b=(1-eo(p))*30;
+   return `<div style="position:absolute;inset:0;background:#000"></div><div class="w" style="font-size:120px;color:#fff;text-shadow:0 0 30px rgba(255,255,255,.6),0 0 80px rgba(120,170,255,.5);filter:blur(${b}px);opacity:${cl(p*2)};transform:translate(-50%,-50%) translateY(-40px) scale(${1.15-.15*eo(p)})">Victor-Dias.mp4</div>
+   <div class="w" style="font:600 46px Inter;letter-spacing:.35em;color:rgba(220,230,255,.85);filter:blur(${b}px);opacity:${cl(p*2-.4)};transform:translate(-50%,-50%) translateY(70px)">@DIASL_UISVICTOR</div>`;}},
+];
+window.__setTime=function(t){
+  const sc=SC.find(s=>t>=s.s&&t<s.e)||SC[SC.length-1];
+  document.getElementById('st').innerHTML=sc.f(t)+'<div class="grain"></div>';
+};
+window.__setTime(0);
+</script></body></html>

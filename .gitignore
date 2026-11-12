@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 .DS_Store
 projetos/*/entrega_v*/
+projetos/*/esboco_v*/
