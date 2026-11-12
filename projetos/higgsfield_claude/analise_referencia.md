@@ -156,3 +156,7 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 - Saíram das cenas Seedance o título repetido ("O QUE EU CONSIGO FAZER", "TRANSFORMA EM VÍDEO.") e o prompt digitado ("uma mulher montando um dragão" etc.). Durante as pausas da voz, só a cena roda com a música; fica apenas o selo pequeno HIGGSFIELD · SEEDANCE 2.0.
 - A caixa de prompt não digita mais "Cria um vídeo cinematográfico…": agora digita "Eu só falo o que eu quero," palavra por palavra no tempo da voz, com "falo" e "quero" em destaque.
 - O áudio é o mesmo da v18 (`entrega_v18x/mix.wav`). Os 4 clipes Seedance foram enviados separados para o Victor (`salvo/clipes/`).
+
+## Versão 16:9 v20
+
+- O Victor aprovou a v19 ("ficou perfeito"). Único ajuste: a fala "Eu só falo o que eu quero" aparece só dentro da caixa de vidro, e a legenda grande em cima dela saiu (`caption()` pula a frase das 6,18 s).
