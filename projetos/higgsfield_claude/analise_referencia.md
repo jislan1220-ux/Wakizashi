@@ -44,3 +44,13 @@ Regras da skill que entram: cortes no ritmo da música (as falas se encaixam nas
 
 - A música e o segundo em que ela começa.
 - A dublagem final na voz dele (o guia gerado no Higgsfield serve de tempo).
+
+## Áudio v01 (cinematográfico)
+
+- Narração: gravação do Victor, 22,9 s. Frases em 0,0 · 3,40 · 6,01 · 11,33 · 14,21 · 15,10 · 19,64 s.
+- Música: FEN (Travis Scott ft. Playboi Carti), 152 BPM, o mesmo andamento da referência. Entra no segundo 26,48 da faixa, para o 808 cair (29,88 s) exatamente no "Caralho" (3,40 s do vídeo).
+- Intro de 0 a 3,40 s abafada (passa-baixa e eco), abrindo até o drop. Daí em diante, música cheia, abaixando sob a voz e girando entre os ouvidos.
+- Corte seco da música em 23,25 s, com braam e boom com cauda. A logo fica em silêncio até 25,5 s, como na referência.
+- Camadas cinematográficas sintéticas (`trilha_cinematica.py`): braam, sub drop e boom com cauda, mais o kit de `scripts/gerar_sfx.py`. Eventos em `sfx.json`.
+- Master: -14 LUFS, pico -1 dB. Duração do vídeo: 25,5 s.
+- A música não vai para o repositório. Antes de postar, confira os direitos: o Instagram pode silenciar ou bloquear o áudio.
