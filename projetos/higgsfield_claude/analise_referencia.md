@@ -177,3 +177,13 @@ Cena dos orcs cancelada pelo Victor em 12/11/2026: a v14 fica só com as duas in
 - Ele também pediu os sons das próprias cenas (fogo, dragão, vento), baixos, com cara de cinema. O Higgsfield estava com 0,5 crédito, então os sons foram sintetizados em `sfx_cenas_v21.py`: vento com rajadas, rugido (rosnado com formantes), batida de asa, baforada de fogo, brasas, passo em ponte de madeira e passagem do dragão. Os eventos são somados aos do `sfx_v18.json` e saem em `sfx_v21.json`.
 - Medição: as cenas ficam de 8 a 15 dB abaixo da mixagem; a cena como um todo sobe só 0,2 dB.
 - Áudio: `sfx_cenas_v21.py times18.json salvo/sfx sfx_v18.json sfx_v21.json`, depois `mix_3d.py voz_v18.wav trilha_v18.wav salvo/sfx sfx_v21.json saida --dur 44.4474 --fim 42.1974`. O vídeo de 24 fps é remontado com esse `mix.wav` (`-c:v copy`).
+
+## v21: sons reais nas cenas
+
+- O Victor achou os sons sintetizados pouco reais. Agora são gravações reais do Freesound, todas CC0 (sem crédito obrigatório e com uso comercial liberado), tiradas do dataset `0x3/freesound-laion-640k` no Hugging Face.
+- Rede: foram liberados `us.aws.cdn.hf.co` (onde ficam os arquivos parquet) e `datasets-server.huggingface.co` no ambiente "Wakizashi (Higgsfield)".
+- Busca: leitura só das colunas de metadados de 400 parquets (`fs_tools/scan.py`, cerca de 130 mil sons, licença CC0) e depois download só das linhas escolhidas (`fs_tools/dl.py`). As gravações ficam em `salvo/fs_dl` (fora do git).
+- `sons_reais_v21.py`: recorta e junta as gravações (os ids estão no cabeçalho do script) e gera `sfx_v21r.json` (base `sfx_v18.json` + cenas).
+  - Dragão: vento, rugido (Dragon Roar com Monster Growl por baixo), asas gigantes e passagem.
+  - Cavaleiros: passos na madeira, ponte rangendo, rugido na janela, baforada (burning air com fire torch), dois gritos, brasas e corrida acelerada 1,45x.
+- Mix: `mix_3d.py voz_v18.wav trilha_v18.wav salvo/sfx sfx_v21r.json saida --dur 44.4474 --fim 42.1974`; depois o vídeo de 24 fps é remontado com esse áudio.

@@ -1,0 +1,2192 @@
+[
+{
+"nome": "v16_pop",
+"t": 0,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_digital_camera_power_on",
+"t": 0.0,
+"db": -13,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 0.24,
+"db": -17,
+"az": [
+-35,
+-35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick",
+"t": 0.88,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 0.88,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "v16_swell",
+"t": 0.88,
+"db": -12,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.12,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 0.88,
+"db": -4,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.12,
+"alinhar": "inicio"
+},
+{
+"nome": "sub_drop",
+"t": 0.88,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.12,
+"alinhar": "pico"
+},
+{
+"nome": "v16_pop",
+"t": 1.12,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh1",
+"t": 1.31,
+"db": -9,
+"az": [
+-100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 1.314,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 1.314,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_tail",
+"t": 1.324,
+"db": -15,
+"az": [
+0,
+90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 1.86,
+"db": -17,
+"az": [
+-35,
+-35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 2.58,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick_leve",
+"t": 3,
+"db": -6.9,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "real_vento",
+"t": 3.188,
+"db": -19,
+"az": [
+-60,
+60
+],
+"el": [
+0.2,
+0.4
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_suspense_riser",
+"t": 3.278,
+"db": -13,
+"az": [
+-60,
+0
+],
+"el": [
+0.3,
+0.6
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "v16_swell",
+"t": 3.285,
+"db": -11,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.1,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 3.288,
+"db": -4,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "braam",
+"t": 3.288,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.35,
+"alinhar": "pico"
+},
+{
+"nome": "sub_drop",
+"t": 3.288,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "pv_impact",
+"t": 3.288,
+"db": -8,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.25,
+"alinhar": "pico"
+},
+{
+"nome": "real_vento_grave",
+"t": 3.288,
+"db": -23,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_shine",
+"t": 3.738,
+"db": -13,
+"az": [
+-40,
+40
+],
+"el": [
+0.5,
+0.5
+],
+"rev": 0.3,
+"alinhar": "pico"
+},
+{
+"nome": "real_rugido",
+"t": 4.288,
+"db": -11,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.35,
+"alinhar": "inicio"
+},
+{
+"nome": "real_asas",
+"t": 6.288,
+"db": -13,
+"az": [
+-30,
+30
+],
+"el": [
+0,
+0
+],
+"rev": 0.25,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh2",
+"t": 8.021,
+"db": -8,
+"az": [
+-120,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 8.025,
+"db": -5,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 8.025,
+"db": -9,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "pv_echo_snap",
+"t": 8.045,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.25,
+"alinhar": "pico"
+},
+{
+"nome": "real_passagem",
+"t": 10.933,
+"db": -10,
+"az": [
+-90,
+90
+],
+"el": [
+0.3,
+0
+],
+"rev": 0.3,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh3",
+"t": 11.179,
+"db": -10,
+"az": [
+100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick_leve",
+"t": 11.183,
+"db": -7,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_tail",
+"t": 12.562,
+"db": -12,
+"az": [
+0,
+-90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh2",
+"t": 12.758,
+"db": -9,
+"az": [
+100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 12.762,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 12.762,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_tail",
+"t": 12.772,
+"db": -15,
+"az": [
+0,
+-90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick",
+"t": 13.054,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 13.054,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 14.134,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 14.134,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "v16_pop",
+"t": 14.134,
+"db": -17,
+"az": [
+-35,
+-35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "boom_cauda",
+"t": 14.134,
+"db": -12,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.3,
+"alinhar": "pico"
+},
+{
+"nome": "pv_shine",
+"t": 14.184,
+"db": -12,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.3,
+"alinhar": "pico"
+},
+{
+"nome": "v16_swoosh3",
+"t": 15.521,
+"db": -9,
+"az": [
+-100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 15.525,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 15.525,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_tail",
+"t": 15.535,
+"db": -15,
+"az": [
+0,
+90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_phone_typing",
+"t": 15.854,
+"db": -14,
+"az": [
+10,
+10
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 15.874,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 16.474,
+"db": -17,
+"az": [
+-35,
+-35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh1",
+"t": 17.1,
+"db": -9,
+"az": [
+100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 17.104,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 17.104,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_tail",
+"t": 17.114,
+"db": -15,
+"az": [
+0,
+-90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 17.154,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick_leve",
+"t": 18.774,
+"db": -7.7,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 18.774,
+"db": -17,
+"az": [
+-35,
+-35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick_leve",
+"t": 19.954,
+"db": -6.6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 19.954,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh2",
+"t": 20.258,
+"db": -9,
+"az": [
+-100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 20.262,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 20.262,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_tail",
+"t": 20.272,
+"db": -15,
+"az": [
+0,
+90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_suspense_riser",
+"t": 20.644,
+"db": -13,
+"az": [
+60,
+0
+],
+"el": [
+0.3,
+0.6
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "v16_swell",
+"t": 20.651,
+"db": -11,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.1,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 20.654,
+"db": -4,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "braam",
+"t": 20.654,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.35,
+"alinhar": "pico"
+},
+{
+"nome": "sub_drop",
+"t": 20.654,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "pv_impact",
+"t": 20.654,
+"db": -8,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.25,
+"alinhar": "pico"
+},
+{
+"nome": "real_andando",
+"t": 20.674,
+"db": -12,
+"az": [
+-15,
+15
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "real_ponte",
+"t": 20.754,
+"db": -21,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_shine",
+"t": 21.104,
+"db": -13,
+"az": [
+40,
+-40
+],
+"el": [
+0.5,
+0.5
+],
+"rev": 0.3,
+"alinhar": "pico"
+},
+{
+"nome": "real_rugido_janela",
+"t": 21.204,
+"db": -19,
+"az": [
+60,
+40
+],
+"el": [
+0.4,
+0.4
+],
+"rev": 0.45,
+"alinhar": "inicio"
+},
+{
+"nome": "real_fogo",
+"t": 21.604,
+"db": -9,
+"az": [
+70,
+-30
+],
+"el": [
+0.3,
+0
+],
+"rev": 0.3,
+"alinhar": "inicio"
+},
+{
+"nome": "real_grito",
+"t": 22.604,
+"db": -16,
+"az": [
+-25,
+-25
+],
+"el": [
+0,
+0
+],
+"rev": 0.25,
+"alinhar": "inicio"
+},
+{
+"nome": "real_grito2",
+"t": 22.804,
+"db": -19,
+"az": [
+30,
+30
+],
+"el": [
+0,
+0
+],
+"rev": 0.25,
+"alinhar": "inicio"
+},
+{
+"nome": "real_brasa",
+"t": 22.954,
+"db": -17,
+"az": [
+-10,
+10
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "real_correndo",
+"t": 23.204,
+"db": -9,
+"az": [
+0,
+-40
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh2",
+"t": 25.387,
+"db": -8,
+"az": [
+120,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 25.391,
+"db": -5,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 25.391,
+"db": -9,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "pv_echo_snap",
+"t": 25.411,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.25,
+"alinhar": "pico"
+},
+{
+"nome": "real_correndo",
+"t": 25.441,
+"db": -8,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "real_ponte",
+"t": 25.691,
+"db": -19,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh3",
+"t": 28.545,
+"db": -10,
+"az": [
+-100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick_leve",
+"t": 28.549,
+"db": -7,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "real_brasa",
+"t": 28.549,
+"db": -16,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "real_correndo",
+"t": 28.569,
+"db": -9,
+"az": [
+10,
+-20
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_tail",
+"t": 29.928,
+"db": -12,
+"az": [
+0,
+90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick_leve",
+"t": 30.467,
+"db": -7.2,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 30.467,
+"db": -17,
+"az": [
+-35,
+-35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_echo_snap",
+"t": 31.187,
+"db": -15,
+"az": [
+-50,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "pv_echo_snap",
+"t": 31.447,
+"db": -15,
+"az": [
+50,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_pop",
+"t": 31.727,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_echo_snap",
+"t": 31.727,
+"db": -15,
+"az": [
+-50,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "pv_echo_snap",
+"t": 32.047,
+"db": -15,
+"az": [
+50,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 32.497,
+"db": -6.3,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 32.497,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "v16_swoosh3",
+"t": 32.889,
+"db": -9,
+"az": [
+100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 32.893,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 32.893,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_tail",
+"t": 32.903,
+"db": -15,
+"az": [
+0,
+-90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 33.367,
+"db": -17,
+"az": [
+-35,
+-35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh1",
+"t": 34.073,
+"db": -9,
+"az": [
+-100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 34.077,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 34.077,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_tail",
+"t": 34.087,
+"db": -15,
+"az": [
+0,
+90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick_leve",
+"t": 34.167,
+"db": -6.6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick_leve",
+"t": 35.247,
+"db": -6.9,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 35.247,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 35.647,
+"db": -17,
+"az": [
+-35,
+-35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick",
+"t": 36.007,
+"db": -6.3,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 36.007,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "v16_pop",
+"t": 36.007,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_shine",
+"t": 36.007,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0.6,
+0.6
+],
+"rev": 0.35,
+"alinhar": "pico"
+},
+{
+"nome": "v16_swoosh2",
+"t": 36.836,
+"db": -9,
+"az": [
+100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 36.84,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 36.84,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_tail",
+"t": 36.85,
+"db": -15,
+"az": [
+0,
+-90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 37.707,
+"db": -17,
+"az": [
+-35,
+-35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh3",
+"t": 38.415,
+"db": -9,
+"az": [
+-100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 38.419,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 38.419,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_tail",
+"t": 38.429,
+"db": -15,
+"az": [
+0,
+90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick_leve",
+"t": 38.507,
+"db": -7.5,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_tick",
+"t": 38.507,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.12,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 39.407,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_phone_typing",
+"t": 39.407,
+"db": -14,
+"az": [
+10,
+10
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_digital_camera_click",
+"t": 40.097,
+"db": -15,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.12,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_kick_leve",
+"t": 40.927,
+"db": -6.6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 40.927,
+"db": -17,
+"az": [
+-35,
+-35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_pop",
+"t": 41.267,
+"db": -17,
+"az": [
+35,
+35
+],
+"el": [
+0.2,
+0.2
+],
+"rev": 0.1,
+"alinhar": "inicio"
+},
+{
+"nome": "v16_swoosh1",
+"t": 42.143,
+"db": -9,
+"az": [
+100,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.08,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 42.147,
+"db": -6,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.05,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 42.147,
+"db": -14,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "pico"
+},
+{
+"nome": "v16_tail",
+"t": 42.157,
+"db": -15,
+"az": [
+0,
+-90
+],
+"el": [
+0,
+0
+],
+"rev": 0.15,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_metallic_riser",
+"t": 42.177,
+"db": -11,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "v16_swell",
+"t": 42.192,
+"db": -9,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.12,
+"alinhar": "pico"
+},
+{
+"nome": "v16_kick",
+"t": 42.197,
+"db": -3,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.12,
+"alinhar": "inicio"
+},
+{
+"nome": "pv_impact",
+"t": 42.197,
+"db": -5,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.35,
+"alinhar": "pico"
+},
+{
+"nome": "braam",
+"t": 42.197,
+"db": -9,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.4,
+"alinhar": "pico"
+},
+{
+"nome": "sub_queda",
+"t": 42.197,
+"db": -10,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.2,
+"alinhar": "pico"
+},
+{
+"nome": "pv_shine",
+"t": 42.597,
+"db": -11,
+"az": [
+0,
+0
+],
+"el": [
+0,
+0
+],
+"rev": 0.4,
+"alinhar": "pico"
+}
+]
