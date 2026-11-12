@@ -101,7 +101,7 @@ Regras da skill que entram: cortes no ritmo da música (as falas se encaixam nas
 
 ## RETOMAR (estado salvo em 12/11/2026)
 
-Versão aprovada: **v12** (`anim_16x9_v12/anim.html`), no visual da `salvo/previews/referencia_aprovada_v07.jpg`. Estrutura: a narração com motion alterna com cinematics em card de vidro 3D (8 batidas cada, corte no meio, frase da narração no card), e as caixas usam o vidro estilo iPhone. São 1920x1080, 30 fps e 31,8 s.
+Versão atual: **v13** (`anim_16x9_v13/anim.html`: todo texto grande é a narração do Victor, palavra por palavra no tempo da voz). Base visual: v12, no visual da `salvo/previews/referencia_aprovada_v07.jpg`. Estrutura: a narração com motion alterna com cinematics em card de vidro 3D (8 batidas cada, corte no meio, frase da narração no card), e as caixas usam o vidro estilo iPhone. São 1920x1080, 30 fps e 31,8 s.
 
 Para refazer numa sessão nova:
 1. Ambiente "Wakizashi (Higgsfield)" (rede do Higgsfield e do Hugging Face liberada).
