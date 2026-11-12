@@ -90,3 +90,11 @@ Regras da skill que entram: cortes no ritmo da música (as falas se encaixam nas
 - `anim_16x9/anim.html`: 1920x1080, 30 fps, 11 cenas sincronizadas palavra a palavra. Os tempos das palavras vieram da transcrição com faster-whisper no sandbox do Higgsfield.
 - SFX: biblioteca CC0 do Katana (Kenney e outros, licenças no pacote), mais Impact, Metallic Riser e Shine do Pires Visuals e as camadas sintéticas de cinema. 100 eventos em `sfx_16x9.json`, gerados por `sfx_16x9.py`, espacializados em 3D por `mix_3d.py`.
 - Fontes: Inter Display Black, JetBrains Mono e League Gothic (OFL, do pacote do Katana).
+
+## Versão 16:9 v03 (laranja, câmera dançando, Seedance, 34,8 s)
+
+- Paleta: verde trocado por laranja #ff7a1a (como a ref. 4, Claude Code), violeta #9d6bff no lugar do rosa. O logo do Higgsfield vem em vetor, do site oficial.
+- Fundo em camadas (ref. 3, Mintlify): luz líquida em WebGL que segue o grave da música (`peaks.js`), painéis de vidro desfocados em profundidade, feixes de luz nas batidas, grão e vinheta. Vidro do Wakizashi nas caixas, no prompt, no comentário e no cartão.
+- Câmera: pan esquerda/direita alternando por cena, rotação 3D, zoom que pulsa no grave e chicote com desfoque na entrada de cada cena.
+- Vitrine Seedance 2.0 Mini (Higgsfield, 720p, 5 s): dragão, cerco cômico à torre e duelo na escola de magia, entre 10,95 s e 20,25 s. A narração abre 9,3 s de silêncio ali. O primeiro prompt do dragão foi barrado pelo filtro de propriedade intelectual e refeito com visual original. Gasto: 4 jobs de cerca de 5 créditos.
+- Selos fixos: "COMENTA HIGGSFIELD PRO PASSO A PASSO" (ref. 4) e "patrocinado por Higgsfield". Final: Higgsfield + KATANA.
